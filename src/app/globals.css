@@ -26,3 +26,42 @@
   /* Accent. Sirf yahi ek rang hai — links, numbers, hover */
   --color-cobalt: #1d3fd4;
 }
+
+/*
+  Fonts. Asli font files fonts.ts mein load hote hain --
+  yahan sirf unhe naam diye ja rahe hain.
+*/
+@theme {
+  --font-heading: var(--font-archivo), ui-sans-serif, sans-serif;
+  --font-body: var(--font-source-sans), ui-sans-serif, sans-serif;
+  --font-mono: var(--font-plex-mono), ui-monospace, monospace;
+}
+
+/*
+  Type scale. Size yahan fix hai taaki har section mein alag-alag
+  size na choose karna pade.
+
+  clamp(sabse chhota, screen ke hisaab se, sabse bada) --
+  isse phone pe heading apne aap chhoti ho jaati hai, bina
+  alag mobile class likhe.
+*/
+@theme {
+  /* Hero ki badi headline */
+  --text-display: clamp(2.25rem, 6vw, 3.5rem);
+  --text-display--line-height: 1.05;
+  --text-display--letter-spacing: -0.02em;
+
+  /* Section ke headings */
+  --text-title: clamp(1.5rem, 3vw, 1.75rem);
+  --text-title--line-height: 1.2;
+  --text-title--letter-spacing: -0.01em;
+
+  /* Hero ke neeche wali line */
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.6;
+
+  /* Chhote mono labels: SELECTED WORK, 01, 02 */
+  --text-label: 0.75rem;
+  --text-label--line-height: 1;
+  --text-label--letter-spacing: 0.08em;
+}

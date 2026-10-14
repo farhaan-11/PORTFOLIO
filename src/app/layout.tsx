@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import { bodyFont, headingFont, monoFont } from "./fonts";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -11,9 +12,13 @@ export default function RootLayout({
 }: {
   children: React.ReactNode;
 }) {
+  // Teeno font ke CSS variables <html> pe lagte hain,
+  // taaki poore page mein kahin bhi use ho sakein.
+  const fontVariables = `${headingFont.variable} ${bodyFont.variable} ${monoFont.variable}`;
+
   return (
-    <html lang="en">
-      <body className="bg-paper text-ink">{children}</body>
+    <html lang="en" className={fontVariables}>
+      <body className="bg-paper text-ink font-body">{children}</body>
     </html>
   );
 }
