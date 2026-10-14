@@ -1,6 +1,21 @@
 // Site ke saare words yahin rehte hain.
 // Koi bhi line badalni ho to sirf ye file kholni hai — component files nahi.
 
+// Nav bar ke words. Links page ke sections pe jump karte hain — aur ye
+// sections aage ke steps mein banenge, isliye tab tak click karne pe
+// kuch nahi hoga. Ye galti nahi hai, order aisa hi hai.
+export const nav = {
+  name: "Farhan Ansari",
+
+  // Sirf teen link. Nav sitemap nahi, escape hatch hai — Stack aur
+  // Experience beech page mein hain, wahan reader scroll karke pahunchta hai.
+  links: [
+    { label: "Work", href: "#work" },
+    { label: "About", href: "#about" },
+    { label: "Contact", href: "#contact" },
+  ],
+};
+
 export const hero = {
   // Headline ke upar chhoti mono label. Parichay yahan hai, headline mein nahi,
   // taaki headline sirf ek kaam kare.

@@ -1,7 +1,12 @@
+import { SiteHeader } from "@/components/layout/SiteHeader";
+
 export default function Home() {
   return (
-    <main>
-      <div>Hello world!</div>
-    </main>
+    <>
+      <SiteHeader />
+
+      {/* Hero, work, experience, stack, about, contact — aage ke steps mein */}
+      <main />
+    </>
   );
 }
