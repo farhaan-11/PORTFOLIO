@@ -1,2 +1,28 @@
 @import "tailwindcss";
 @import "tw-animate-css";
+
+/*
+  Design A — "Index"
+
+  Saare colors sirf yahan. Kisi bhi component mein hex code nahi likhna.
+  Yahan ek value badlo, poori site badal jayegi.
+*/
+@theme {
+  /* Page ka background. Pure white nahi — woh screen pe chubhta hai */
+  --color-paper: #fbfaf8;
+
+  /* Thoda gehra paper. Metric strip jaise band aur row hover ke liye */
+  --color-paper-2: #f2f0ea;
+
+  /* Main text. Pure black nahi — woh paper pe bhaari lagta hai */
+  --color-ink: #121214;
+
+  /* Halka text: labels, dates, stack line, meta */
+  --color-ink-soft: #6b6a66;
+
+  /* Hairline. Sirf divider aur border — editorial layout isi se banta hai */
+  --color-line: #e3e0d9;
+
+  /* Accent. Sirf yahi ek rang hai — links, numbers, hover */
+  --color-cobalt: #1d3fd4;
+}
