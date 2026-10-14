@@ -135,3 +135,66 @@ export const experience = [
     period: "Jul 2024 — May 2025",
   },
 ];
+
+// Stack — jaan-boojh ke chhoti list hai (~26 cheezein, resume mein ~45 hain).
+// Lamba stack list junior ka signal hai: jo cheez har developer ke paas hai
+// (HTML5, CSS3, Git, Postman) usse tum alag nahi dikhte, bas list bhaari hoti hai.
+// Kuch bhi add karne se pehle poochho: "kya iska na hona chaunkane wali baat hoti?"
+// Agar nahi, to woh is list mein nahi aata.
+export const stack = [
+  {
+    group: "Languages",
+    items: ["JavaScript", "TypeScript"],
+  },
+  {
+    group: "Frontend",
+    items: ["React", "Next.js", "Redux Toolkit", "Tailwind CSS"],
+  },
+  {
+    group: "Backend",
+    items: [
+      "Node.js",
+      "Express",
+      "REST APIs",
+      "SSE",
+      "WebSockets",
+      "JWT / OAuth 2.0 / RBAC",
+      "Razorpay",
+    ],
+  },
+  {
+    group: "Data",
+    items: ["MongoDB Atlas", "MySQL", "Redis"],
+  },
+  {
+    group: "GenAI",
+    items: [
+      "LangChain.js",
+      "RAG",
+      "Atlas Vector Search",
+      "Embeddings",
+      "Prompt engineering",
+      "OpenAI",
+      "Gemini",
+    ],
+  },
+  {
+    group: "Cloud & DevOps",
+    items: [
+      "AWS (EC2, S3, IAM, Route 53)",
+      "Nginx",
+      "Docker",
+      "GitHub Actions",
+      "Vercel",
+      "Render",
+    ],
+  },
+  {
+    // Alag group isliye ki inhe baaki ke barabar rakhna jhooth hota —
+    // ye abhi seekhe ja rahe hain. Imaandari yahan kamzori nahi dikhti;
+    // ye dikhata hai ki Farhan apni seema jaanta hai, aur ruka nahi hai.
+    // Jab ZUNO ka Python version chal jaye, tab inhe Languages/Backend mein le jaana.
+    group: "Learning now",
+    items: ["Python", "FastAPI"],
+  },
+];
