@@ -27,3 +27,29 @@ export const hero = {
     },
   ],
 };
+
+// Hero ke neeche ki metric strip. Chaar numbers, teen alag projects se.
+// Har number ke saath project ka naam zaroori hai — warna reader maan lega
+// ki sab ek hi project ke hain, aur phir teeno claims kamzor ho jate hain.
+export const metrics = [
+  {
+    value: "0 → 5",
+    label: "chunks retrieved on 10/10 Hinglish queries",
+    project: "ZUNO",
+  },
+  {
+    value: "200+",
+    label: "daily users on a logistics platform",
+    project: "Gautam Solar",
+  },
+  {
+    value: "25+",
+    label: "modules shipped across sales, dispatch and delivery",
+    project: "Gautam Solar",
+  },
+  {
+    value: "40%",
+    label: "faster search API",
+    project: "RentalWave",
+  },
+];
