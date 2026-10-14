@@ -108,3 +108,30 @@ export const work = [
       "A marketplace for rentals and PG listings. Its search folds six or more optional filters into a single MongoDB query, instead of a chain of conditionals that grows every time a filter is added.",
   },
 ];
+
+// Experience — ek ledger, showcase nahi.
+// Section ka heading "Where I've worked" rahega, "Experience" nahi — kyunki
+// "Selected work" aur "Experience" sunne mein ek jaise lagte hain.
+//
+// Yahan KABHI description ya bullet add nahi karni. Work section prose hai,
+// ye sirf role-company-tareekh hai. Dono ki shakal alag rehni chahiye —
+// wahi ek cheez hai jo inhe repeat lagne se bachati hai.
+export const experience = [
+  {
+    role: "Independent Developer",
+    company: "ZUNO",
+    period: "Aug 2025 — present",
+  },
+  {
+    role: "Full Stack Developer",
+    // "(Contract)" rakha hai kyunki ye 3 mahine ka tenure bina kuch likhe
+    // samjha deta hai — warna job-hopping jaisa dikhta.
+    company: "Rollix (Contract)",
+    period: "May 2025 — Aug 2025",
+  },
+  {
+    role: "Full Stack Developer",
+    company: "Gautam Solar",
+    period: "Jul 2024 — May 2025",
+  },
+];
