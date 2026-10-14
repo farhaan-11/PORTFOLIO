@@ -53,3 +53,30 @@ export const metrics = [
     project: "RentalWave",
   },
 ];
+
+// Work index — homepage ka sabse bada section.
+// List ka order hi number banta hai (pehla = 01), isliye number yahan store nahi kiya.
+export const work = [
+  {
+    title: "ZUNO",
+    tagline: "AI tutor for Hindi-medium students",
+    period: "Aug 2025 — present",
+    // Link check kiya gaya: 200 in ~0.4s, backend health bhi jaga hua.
+    // Dobara dawa karne se pehle phir se check karna — Render free tier sleep karta hai.
+    link: "https://learnzuno.in",
+    linkLabel: "learnzuno.in",
+    // Paanch hi cheezein. Lambi stack line padhi nahi jati —
+    // har ek yahan alag parat dikhati hai: frontend, backend, AI, database, deploy.
+    stack: [
+      "React",
+      "Node.js",
+      "LangChain.js",
+      "MongoDB Atlas Vector Search",
+      "AWS EC2",
+    ],
+    // Ek hi hook, teen nahi. Hero ne jo teen problems ginayi hain unhe yahan
+    // dobara nahi likha — warna page repeat lagta hai.
+    description:
+      "A study tutor for Bihar Board Class 10 Science, built for students who think in Hindi but whose textbook is in English. It answers only from 16 indexed chapters — and when the answer isn't in them, it says so instead of inventing one.",
+  },
+];
