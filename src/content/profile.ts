@@ -79,4 +79,32 @@ export const work = [
     description:
       "A study tutor for Bihar Board Class 10 Science, built for students who think in Hindi but whose textbook is in English. It answers only from 16 indexed chapters — and when the answer isn't in them, it says so instead of inventing one.",
   },
+  {
+    title: "Logistics platform",
+    tagline: "Gautam Solar",
+    period: "Jul 2024 — May 2025",
+    // Internal company product hai, public link nahi hai. Isliye description ko
+    // thoda zyada kaam karna padta hai — reader khud jaake dekh nahi sakta.
+    link: null,
+    linkLabel: null,
+    stack: ["React", "Node.js", "MySQL", "JWT + RBAC"],
+    // Ismein 200+ users aur 25+ modules jaan-boojh ke nahi likhe —
+    // dono pehle se metric strip mein hain, isi page pe thoda upar.
+    description:
+      "Replaced a paper-based dispatch process for a solar manufacturer. Live GPS tracking with route-deviation alerts, and three role-based dashboards where each role only ever sees its own rows.",
+  },
+  {
+    title: "RentalWave",
+    tagline: "Rental & PG marketplace",
+    period: "May 2024 — present",
+    // Frontend Vercel pe, backend Render pe. Link check kiya: 200 in ~0.8s.
+    // Backend so jaye to page khulega par search chalega nahi — dawa karne se
+    // pehle sirf page nahi, ek asli search bhi check karna.
+    link: "https://rental-wave.vercel.app",
+    linkLabel: "rental-wave.vercel.app",
+    stack: ["React", "Node.js", "MongoDB", "Redis"],
+    // "40% faster" yahan nahi — wo metric strip mein hai.
+    description:
+      "A marketplace for rentals and PG listings. Its search folds six or more optional filters into a single MongoDB query, instead of a chain of conditionals that grows every time a filter is added.",
+  },
 ];
