@@ -1,0 +1,2 @@
+# Har machine pe line endings ek jaise rahein (Windows CRLF ki wajah se fake diffs na aayein)
+* text=auto eol=lf

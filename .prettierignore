@@ -1,0 +1,7 @@
+.next
+node_modules
+package-lock.json
+
+# Local files - inhe prettier chhoo bhi na sake
+PLAN.md
+.claude
