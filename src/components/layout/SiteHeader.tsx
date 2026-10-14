@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { contact, nav } from "@/content/profile";
 
 /*
@@ -6,22 +7,40 @@ import { contact, nav } from "@/content/profile";
   Sticky jaan-boojh ke nahi rakha — woh phone pe 60px hamesha kha leta hai,
   aur uske neeche content padhne ke liye backdrop blur lagana padta hai.
   Wahi "template se uthaya hua" feel deta hai.
+
+  `nested` tab true hota hai jab header homepage ke andar wale page pe ho
+  (jaise /work/zuno). Wahan do cheezein badalti hain:
+  naam wapas jaane ka link ban jata hai, aur "#work" jaise anchor
+  "/#work" ban jate hain — warna wo us page pe kahin nahi jaate.
 */
-export function SiteHeader() {
+export function SiteHeader({ nested = false }: { nested?: boolean }) {
+  const linkPrefix = nested ? "/" : "";
+
   return (
     <header className="border-line border-b">
       <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6 md:px-8">
-        {/* Logo nahi, naam. Ye homepage hai — isliye link nahi, sirf text. */}
-        <span className="font-heading text-base font-medium tracking-tight">
-          {nav.name}
-        </span>
+        {/* Logo nahi, naam. Homepage pe ye sirf text hai — khud pe link bekaar hai. */}
+        {nested ? (
+          // next/link, plain <a> nahi: homepage pehle se load hoke rakha rehta
+          // hai, isliye wapas jaana turant lagta hai.
+          <Link
+            href="/"
+            className="font-heading hover:text-cobalt text-base font-medium tracking-tight transition-colors"
+          >
+            ← {nav.name}
+          </Link>
+        ) : (
+          <span className="font-heading text-base font-medium tracking-tight">
+            {nav.name}
+          </span>
+        )}
 
         {/* Desktop pe teeno jump links */}
         <nav className="hidden gap-7 sm:flex">
           {nav.links.map((link) => (
             <a
               key={link.href}
-              href={link.href}
+              href={`${linkPrefix}${link.href}`}
               className="text-label text-ink-soft hover:text-cobalt font-mono uppercase transition-colors"
             >
               {link.label}

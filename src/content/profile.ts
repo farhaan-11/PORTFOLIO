@@ -83,6 +83,9 @@ export const work = [
     // Dobara dawa karne se pehle phir se check karna — Render free tier sleep karta hai.
     link: "https://learnzuno.in",
     linkLabel: "learnzuno.in",
+    // Case study page. Site ke andar ka page hai, isliye isko naye tab mein
+    // nahi kholna — reader ko yahin rakhna hai.
+    caseStudy: "/work/zuno",
     // Paanch hi cheezein. Lambi stack line padhi nahi jati —
     // har ek yahan alag parat dikhati hai: frontend, backend, AI, database, deploy.
     stack: [
@@ -105,6 +108,9 @@ export const work = [
     // thoda zyada kaam karna padta hai — reader khud jaake dekh nahi sakta.
     link: null,
     linkLabel: null,
+    // Sirf ZUNO ka case study page hai. Baaki dono ke liye ek-ek paragraph
+    // kaafi hai — teen aadhe-adhoore case study se ek poora behtar hai.
+    caseStudy: null,
     stack: ["React", "Node.js", "MySQL", "JWT + RBAC"],
     // Ismein 200+ users aur 25+ modules jaan-boojh ke nahi likhe —
     // dono pehle se metric strip mein hain, isi page pe thoda upar.
@@ -122,6 +128,7 @@ export const work = [
     // pehle sirf page nahi, ek asli search bhi check karna.
     link: "https://rental-wave.vercel.app",
     linkLabel: "rental-wave.vercel.app",
+    caseStudy: null,
     stack: ["React", "Node.js", "MongoDB", "Redis"],
     // "40% faster" yahan nahi — wo metric strip mein hai.
     description:

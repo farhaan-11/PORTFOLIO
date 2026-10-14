@@ -1,3 +1,4 @@
+import Link from "next/link";
 import { work } from "@/content/profile";
 import { container, sectionPadding } from "@/lib/layout";
 
@@ -42,7 +43,16 @@ export function WorkIndex() {
                     : "font-heading text-title group-hover:text-cobalt mt-3 font-semibold transition-colors"
                 }
               >
-                {project.title}
+                {/*
+                  Jiska case study page hai, uska title bhi click hota hai.
+                  Title hover pe cobalt hota hai — agar wo click na hota to
+                  reader ko dhoka lagta.
+                */}
+                {project.caseStudy ? (
+                  <Link href={project.caseStudy}>{project.title}</Link>
+                ) : (
+                  project.title
+                )}
               </h3>
 
               <p className="text-ink-soft mt-1">{project.tagline}</p>
@@ -59,17 +69,34 @@ export function WorkIndex() {
                 {project.stack.join(" · ")}
               </p>
 
-              {/* Gautam Solar internal product hai, uska link null hai */}
-              {project.link && (
-                <a
-                  href={project.link}
-                  target="_blank"
-                  rel="noreferrer"
-                  className="text-label text-cobalt mt-5 inline-block font-mono underline underline-offset-4"
-                >
-                  {project.linkLabel} ↗
-                </a>
-              )}
+              {/*
+                Do tarah ke link: case study (site ke andar) aur live site (bahar).
+                Case study pehle hai — jo reader is row tak padh chuka hai,
+                usey aage padhna hai, app chalani nahi.
+
+                Gautam Solar internal product hai, uska live link null hai.
+              */}
+              <div className="mt-5 flex flex-wrap gap-x-6 gap-y-3">
+                {project.caseStudy && (
+                  <Link
+                    href={project.caseStudy}
+                    className="text-label text-cobalt font-mono underline underline-offset-4"
+                  >
+                    Read the case study →
+                  </Link>
+                )}
+
+                {project.link && (
+                  <a
+                    href={project.link}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="text-label text-cobalt font-mono underline underline-offset-4"
+                  >
+                    {project.linkLabel} ↗
+                  </a>
+                )}
+              </div>
             </div>
           </article>
         ))}
