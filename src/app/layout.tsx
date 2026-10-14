@@ -32,6 +32,16 @@ export default function RootLayout({
   return (
     <html lang="en" className={fontVariables}>
       <body className="bg-paper text-ink font-body antialiased">
+        {/*
+          Ye ek line <html> pe "js" class lagati hai, page paint hone se pehle.
+          Scroll reveal ka chhupane wala CSS sirf is class ke andar hai —
+          matlab JS fail hua to kuch chhupta hi nahi, poora content dikhta hai.
+        */}
+        <script
+          dangerouslySetInnerHTML={{
+            __html: `document.documentElement.classList.add("js")`,
+          }}
+        />
         {children}
       </body>
     </html>

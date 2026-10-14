@@ -65,3 +65,43 @@
   --text-label--line-height: 1;
   --text-label--letter-spacing: 0.08em;
 }
+
+/*
+  Nav ke link page ke section pe jump karte hain. Ye do cheezein
+  us jump ko theek karti hain.
+*/
+html {
+  /* Jump jhatke se nahi, scroll hoke jaye */
+  scroll-behavior: smooth;
+  /* Section bilkul upar chipke nahi — thodi hawa chhodo */
+  scroll-padding-top: 2rem;
+}
+
+/*
+  Scroll reveal.
+
+  Sabse zaroori rule: content DEFAULT mein visible hai.
+  Chhupane wala rule sirf tab lagta hai jab <html> pe "js" class ho,
+  aur wo class ek chhota script lagata hai. JS fail ho to class lagti hi
+  nahi aur poora page normal dikhta hai — JS ke bharose kabhi nahi chhodna.
+*/
+@media (prefers-reduced-motion: no-preference) {
+  .js [data-reveal] {
+    opacity: 0;
+    transform: translateY(12px);
+    transition:
+      opacity 600ms ease-out,
+      transform 600ms ease-out;
+  }
+
+  .js [data-reveal][data-revealed="true"] {
+    opacity: 1;
+    transform: none;
+  }
+}
+
+/*
+  Jisne apne phone/laptop mein animation band kiya hua hai, uske liye
+  upar wala poora block chalta hi nahi — sab kuch seedha dikhta hai.
+  Ye setting log aksar motion sickness ki wajah se lagate hain.
+*/
