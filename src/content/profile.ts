@@ -59,7 +59,10 @@ export const metrics = [
 export const work = [
   {
     title: "ZUNO",
-    tagline: "AI tutor for Hindi-medium students",
+    // Tagline mein "Hindi-medium students" nahi likha — wo baat hero mein
+    // aur About mein pehle se hai. About wala version sabse mazboot hai
+    // ("I studied that way too"), isliye wahi rehne diya aur yahan se hataya.
+    tagline: "RAG study tutor, Bihar Board Class 10",
     period: "Aug 2025 — present",
     // Link check kiya gaya: 200 in ~0.4s, backend health bhi jaga hua.
     // Dobara dawa karne se pehle phir se check karna — Render free tier sleep karta hai.
@@ -74,10 +77,10 @@ export const work = [
       "MongoDB Atlas Vector Search",
       "AWS EC2",
     ],
-    // Ek hi hook, teen nahi. Hero ne jo teen problems ginayi hain unhe yahan
-    // dobara nahi likha — warna page repeat lagta hai.
+    // Yahan sirf wo baatein hain jo page pe kahin aur nahi hain.
+    // Classifier wali line ZUNO ko ek system dikhati hai, sirf ek idea nahi.
     description:
-      "A study tutor for Bihar Board Class 10 Science, built for students who think in Hindi but whose textbook is in English. It answers only from 16 indexed chapters — and when the answer isn't in them, it says so instead of inventing one.",
+      "It answers only from 16 indexed Science chapters, and says so when the answer isn't in them instead of inventing one. A 9-intent classifier decides whether a question needs the syllabus at all, so a greeting never touches vector search.",
   },
   {
     title: "Logistics platform",
@@ -96,7 +99,9 @@ export const work = [
   {
     title: "RentalWave",
     tagline: "Rental & PG marketplace",
-    period: "May 2024 — present",
+    // Sirf saal. Pehle "May 2024 — present" tha, par ab is pe kaam nahi ho raha —
+    // aur "present" likhna chhota jhooth hai jo poore page ka bharosa girata hai.
+    period: "2024",
     // Frontend Vercel pe, backend Render pe. Link check kiya: 200 in ~0.8s.
     // Backend so jaye to page khulega par search chalega nahi — dawa karne se
     // pehle sirf page nahi, ek asli search bhi check karna.
@@ -214,3 +219,23 @@ export const about = [
   // Saboot: ZUNO repo ki ZUNO_VERIFIED_FACTS.md.
   "One habit I'd bring to a team: I check my own claims before I make them. I audited ZUNO against its own code and removed nine things from my resume that I couldn't prove.",
 ];
+
+// Contact — page ka aakhri section.
+// Koi contact form nahi: form bharne mein mehnat lagti hai, aur recruiter
+// aksar apne email se baat karna chahta hai. Email text + copy button kaafi hai.
+export const contact = {
+  email: "farhanraza2239@gmail.com",
+
+  // Location sabse pehle dhoondhi jati hai. Isko chhupane se recruiter
+  // maan leta hai ki kuch gadbad hai — isliye saaf likha hai.
+  location: "Hyderabad, India",
+  relocation: "Open to relocation",
+
+  links: [
+    { label: "GitHub", href: "https://github.com/farhaan-11" },
+    { label: "LinkedIn", href: "https://linkedin.com/in/farhan04" },
+    // Ye file abhi public/ mein nahi hai — Phase 3 mein daalni padegi,
+    // warna link 404 dega.
+    { label: "Resume (PDF)", href: "/resume.pdf" },
+  ],
+};
