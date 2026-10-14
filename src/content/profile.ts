@@ -198,3 +198,19 @@ export const stack = [
     items: ["Python", "FastAPI"],
   },
 ];
+
+// About — poore page ki ek jagah jahan reader Farhan ko sunta hai, uske kaam ko nahi.
+// Isme koi tareekh ya "last month" nahi likhna — content purana pad jata hai
+// aur usey update karne koi wapas nahi aata.
+export const about = [
+  "I didn't study computer science. My degrees are in electronics — I learned to build software by building things people had no choice but to use: a dispatch floor that ran on paper until it didn't, a wallet that moved real money, and ZUNO.",
+
+  // Ye line page ki sabse mazboot line hai, aur isko koi copy nahi kar sakta —
+  // Farhan khud Hindi-medium se hai. Isko kabhi general mat banana
+  // ("most tools ignore this gap" jaisa) — tabhi ye asar karti hai jab zaati ho.
+  "ZUNO is for students who read their textbook in English and think in Hindi. I know that gap because I studied that way too.",
+
+  // Ye skill nahi, aadat hai — aur hiring manager skill se zyada aadat pe daav lagata hai.
+  // Saboot: ZUNO repo ki ZUNO_VERIFIED_FACTS.md.
+  "One habit I'd bring to a team: I check my own claims before I make them. I audited ZUNO against its own code and removed nine things from my resume that I couldn't prove.",
+];
