@@ -10,8 +10,8 @@ export const nav = {
   // Sirf teen link. Nav sitemap nahi, escape hatch hai — Stack aur
   // Experience beech page mein hain, wahan reader scroll karke pahunchta hai.
   links: [
-    { label: "Work", href: "#work" },
     { label: "About", href: "#about" },
+    { label: "Work", href: "#work" },
     { label: "Contact", href: "#contact" },
   ],
 };
@@ -225,18 +225,30 @@ export const stack = [
 // About — poore page ki ek jagah jahan reader Farhan ko sunta hai, uske kaam ko nahi.
 // Isme koi tareekh ya "last month" nahi likhna — content purana pad jata hai
 // aur usey update karne koi wapas nahi aata.
+// Teen paragraph, teen alag kaam: kya hoon → kya banaya → pehle kya kiya.
+// Koi personal kahani nahi, koi "I care deeply about..." nahi — wo har
+// portfolio mein hai, isliye wo kuch batata hi nahi.
 export const about = [
-  "I didn't study computer science. My degrees are in electronics — I learned to build software by building things people had no choice but to use: a dispatch floor that ran on paper until it didn't, a wallet that moved real money, and ZUNO.",
+  // Doosra hissa character line hai. Wo kisi se tulna nahi karta
+  // ("course se nahi seekha" jaisa) — tulna karte hi reader ke dimaag mein
+  // wahi shak aa jata hai jo kisi ne uthaya hi nahi tha.
+  "I build full-stack applications in React and Node.js — software that has to keep running after I ship it.",
 
-  // Ye line page ki sabse mazboot line hai, aur isko koi copy nahi kar sakta —
-  // Farhan khud Hindi-medium se hai. Isko kabhi general mat banana
-  // ("most tools ignore this gap" jaisa) — tabhi ye asar karti hai jab zaati ho.
-  "ZUNO is for students who read their textbook in English and think in Hindi. I know that gap because I studied that way too.",
+  // Python yahan hai, pehle paragraph mein nahi: Stack section Python ko
+  // "Learning now" mein rakhta hai, aur ek hi page do alag baatein nahi keh sakta.
+  "Since August 2025 I've been building ZUNO on my own — the retrieval pipeline, a 9-intent classifier, auth and sessions on Redis, rate limiting, and a GitHub Actions deploy to EC2. Its retrieval layer is moving to Python now.",
 
-  // Ye skill nahi, aadat hai — aur hiring manager skill se zyada aadat pe daav lagata hai.
-  // Saboot: ZUNO repo ki ZUNO_VERIFIED_FACTS.md.
-  "One habit I'd bring to a team: I check my own claims before I make them. I audited ZUNO against its own code and removed nine things from my resume that I couldn't prove.",
+  // Gautam Solar aur Rollix ko apna paragraph: pehle ye ZUNO wale paragraph
+  // ki poonch the aur dikhte hi nahi the.
+  "Before that: logistics at Gautam Solar — dashboards for 200+ daily users, and the dispatch and delivery modules. Then Rollix, where I was the only developer on payments — Razorpay checkout, deposit API, INR/USD conversion.",
 ];
+
+// Ye biography nahi hai — ye maang hai. Isliye alag rakha hai, aur component
+// ise hairline ke neeche thoda bhaari font mein dikhata hai.
+// Rollix ka duration jaan-boojh ke kahin nahi likha: resume "May–Aug 2025"
+// kehta hai, isliye jab tak wo saaf na ho, number dena galat hoga.
+export const aboutAvailability =
+  "Open to full-stack and frontend roles where AI is part of the product. Based in Hyderabad.";
 
 // Contact — page ka aakhri section.
 // Koi contact form nahi: form bharne mein mehnat lagti hai, aur recruiter

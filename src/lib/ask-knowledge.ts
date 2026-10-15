@@ -1,5 +1,6 @@
 import {
   about,
+  aboutAvailability,
   contact,
   experience,
   hero,
@@ -46,7 +47,7 @@ export function buildKnowledge() {
 
     section(
       "About, in his own words",
-      about.map((paragraph) => `- ${paragraph}`),
+      [...about, aboutAvailability].map((paragraph) => `- ${paragraph}`),
     ),
 
     section(
