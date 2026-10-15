@@ -23,15 +23,18 @@ export function WorkIndex() {
         Selected work
       </h2>
 
-      <div className="border-line mt-10 border-t">
+      {/* Ye line khud khinchti hai (SiteMotion), isliye border ki jagah asli element hai */}
+      <span data-rule className="bg-line mt-8 block h-px" />
+
+      <div data-anim-group>
         {work.map((project, index) => (
           <article
             key={project.title}
-            data-reveal
-            className="group border-line border-b py-10 md:grid md:grid-cols-12 md:gap-10"
+            data-anim="row"
+            className="group border-line hover:bg-paper-2 border-b py-8 transition-colors md:-mx-5 md:grid md:grid-cols-12 md:gap-10 md:px-5"
           >
             <div className="md:col-span-4">
-              <span className="text-label text-cobalt font-mono">
+              <span className="text-label text-accent font-mono">
                 {/* 1 ko "01" banata hai */}
                 {String(index + 1).padStart(2, "0")}
               </span>
@@ -41,18 +44,18 @@ export function WorkIndex() {
                 hai aur page ka sabse bada daava — baaki dono uske barabar nahi hain.
               */}
               {/*
-                Hover pe cobalt sirf tab jab title sach mein click hota ho,
+                Hover pe accent sirf tab jab title sach mein click hota ho,
                 yaani jab case study page ho. Warna reader title pe click
                 karta hai aur kuch nahi hota — aur chhota dhoka bhi page ka
                 bharosa girata hai.
               */}
               <h3
                 className={[
-                  "font-heading mt-3 font-semibold",
+                  "font-heading mt-3",
                   // Pehli entry ka title thoda bada: ye page ka sabse bada daava hai.
                   index === 0 ? "text-3xl" : "text-title",
                   project.caseStudy
-                    ? "group-hover:text-cobalt transition-colors"
+                    ? "group-hover:text-accent transition-colors"
                     : "",
                 ].join(" ")}
               >
@@ -94,7 +97,7 @@ export function WorkIndex() {
                 {project.caseStudy && (
                   <Link
                     href={project.caseStudy}
-                    className="text-label text-cobalt font-mono underline underline-offset-4"
+                    className="text-label text-accent font-mono underline underline-offset-4"
                   >
                     Read the case study →
                   </Link>
@@ -105,7 +108,7 @@ export function WorkIndex() {
                     href={project.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-label text-cobalt font-mono underline underline-offset-4"
+                    className="text-label text-accent font-mono underline underline-offset-4"
                   >
                     {project.linkLabel} ↗
                   </a>

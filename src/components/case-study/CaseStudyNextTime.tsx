@@ -19,7 +19,7 @@ export function CaseStudyNextTime() {
         What I&apos;d change next time
       </h2>
 
-      <div className="mt-10 max-w-[62ch] space-y-6">
+      <div className="mt-8 max-w-[62ch] space-y-5">
         {nextTime.map((paragraph) => (
           <p key={paragraph} data-reveal className="text-lead">
             {paragraph}

@@ -5,7 +5,7 @@ import { ContactFooter } from "@/components/sections/ContactFooter";
 import { Hero } from "@/components/sections/Hero";
 import { Stack } from "@/components/sections/Stack";
 import { WorkIndex } from "@/components/sections/WorkIndex";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SiteMotion } from "@/components/ui/SiteMotion";
 
 // Section ka order hi page ki kahani hai:
 // daava (hero) → banda kaun hai (about) → kaam → tools → kured lo (ask) → email
@@ -37,8 +37,8 @@ export default function Home() {
 
       <ContactFooter />
 
-      {/* Kuch dikhata nahi — sirf scroll pe fade-up chalu karta hai */}
-      <ScrollReveal />
+      {/* Kuch dikhata nahi — Lenis aur saari scroll animation yahin se chalti hai */}
+      <SiteMotion />
     </>
   );
 }

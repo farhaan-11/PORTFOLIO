@@ -32,7 +32,7 @@ export const hero = {
   // Subject ka naam bhi jaan-boojh ke nahi hai. Abhi sirf Science hai,
   // aage aur subject aayenge — tab ye line waisi ki waisi chalegi.
   //
-  // Teen tukde isliye hain ki beech wala phrase cobalt mein highlight hota hai.
+  // Teen tukde isliye hain ki beech wala phrase accent mein highlight hota hai.
   // Ek hi string hoti to component ko usme se phrase dhoondhna padta.
   summaryStart:
     "I built ZUNO — a tutor for Bihar Board Class 10. It answers only from the board's syllabus. Anything outside it gets an honest ",
@@ -289,7 +289,11 @@ export const about = [
 
   // Python yahan hai, pehle paragraph mein nahi: Stack section Python ko
   // "Learning now" mein rakhta hai, aur ek hi page do alag baatein nahi keh sakta.
-  "Since August 2025 I've been building ZUNO on my own — the retrieval pipeline, a 9-intent classifier, auth and sessions on Redis, rate limiting, and a GitHub Actions deploy to EC2. Its retrieval layer is moving to Python now.",
+  // "Dockerised ... through GitHub Actions" — deploy khud Dockerised nahi hota,
+  // app hoti hai; isliye "Dockerised deploy" ki jagah ye lamba lekin sahi phrase hai.
+  // Teeno cheezein repo mein verify ki gayi hain (Dockerfile ×2, compose, deploy-ec2.yml).
+  // Ye line ek hi baat kehti hai: poora infra akele banda chala raha hai.
+  "Since August 2025 I've been building ZUNO on my own — the retrieval pipeline, a 9-intent classifier, auth and sessions on Redis, rate limiting, and a Dockerised deploy to EC2 through GitHub Actions. Its retrieval layer is moving to Python now.",
 
   // Gautam Solar aur Rollix ko apna paragraph: pehle ye ZUNO wale paragraph
   // ki poonch the aur dikhte hi nahi the.
@@ -304,21 +308,113 @@ export const aboutAvailability =
   "Open to full-stack and frontend roles where AI is part of the product. Based in Hyderabad.";
 
 // Contact — page ka aakhri section.
-// Koi contact form nahi: form bharne mein mehnat lagti hai, aur recruiter
-// aksar apne email se baat karna chahta hai. Email text + copy button kaafi hai.
+//
+// Do column: ek taraf form, doosri taraf seedhe raaste (email, phone,
+// location, GitHub, LinkedIn). Form isliye hai ki khaali email address dekh
+// ke bahut log ruk jate hain — "likhun kya?" Form ye sawaal pehle hi pooch
+// leta hai. Aur jo form nahi bharna chahta, uske liye address bagal mein
+// likha hai — dono raaste ek saath.
 export const contact = {
+  // Heading sawaal hai, "Get in touch" jaisi suchna nahi. Sawaal padhne wale
+  // se jawab maangta hai, aur yahi is section ka poora kaam hai.
+  heading: "What are you building?",
+
+  // Ek hi line. Ye batati hai ki likhna kya hai aur badle mein kya milega.
+  line: "Tell me in one line, and I'll tell you if I'm the right engineer for it.",
+
   email: "farhanraza2239@gmail.com",
 
-  // Location sabse pehle dhoondhi jati hai. Isko chhupane se recruiter
-  // maan leta hai ki kuch gadbad hai — isliye saaf likha hai.
+  // Number ab site pe hai. Display mein space hai (padhne ke liye), href
+  // mein bina space ke country code ke saath — tel: link isi format mein
+  // phone app tak sahi pahunchta hai.
+  phone: {
+    display: "+91 73895 71975",
+    href: "tel:+917389571975",
+  },
+
   location: "Hyderabad, India",
   relocation: "Open to relocation",
 
-  links: [
-    { label: "GitHub", href: "https://github.com/farhaan-11" },
-    { label: "LinkedIn", href: "https://linkedin.com/in/farhan04" },
-    // Ye file abhi public/ mein nahi hai — Phase 3 mein daalni padegi,
-    // warna link 404 dega.
-    { label: "Resume (PDF)", href: "/resume.pdf" },
+  // Rows ke neeche ki ek line. Teen baatein jo recruiter dhoondhta hai:
+  // available hai ya nahi, kis timezone mein, aur jawab kab tak aayega.
+  availability: "Open to full-time roles · IST · replies in a day",
+
+  // Resume alag hai: wo nav bar mein hai, yahan nahi. Recruiter resume
+  // sabse pehle dhoondhta hai aur footer tak scroll karna uska kaam nahi.
+  //
+  // `ready` ek switch hai. Jab tak `public/resume.pdf` maujood nahi hai, ye
+  // `false` rehta hai aur nav mein button dikhta hi nahi — tooti hui resume
+  // link 404 deti hai aur recruiter wapas nahi aata.
+  resume: {
+    ready: false,
+    href: "/resume.pdf",
+    label: "Resume (PDF)",
+  },
+
+  // Daayen column ki rows. Order ahmiyat ka hai: jis par sabse zyada log
+  // click karte hain wo sabse upar.
+  //
+  // `external: true` wale link naye tab mein khulte hain — GitHub/LinkedIn
+  // doosri site hain, aur reader ko portfolio se bahar nahi phenkna chahiye.
+  channels: [
+    {
+      label: "Email",
+      value: "farhanraza2239@gmail.com",
+      href: "mailto:farhanraza2239@gmail.com",
+      external: false,
+    },
+    {
+      label: "Phone",
+      value: "+91 73895 71975",
+      href: "tel:+917389571975",
+      external: false,
+    },
+    // Location ka koi link nahi hota — map pe bhejna recruiter ka kaam nahi.
+    {
+      label: "Location",
+      value: "Hyderabad, India",
+      href: null,
+      external: false,
+    },
+    {
+      label: "GitHub",
+      value: "farhaan-11",
+      href: "https://github.com/farhaan-11",
+      external: true,
+    },
+    {
+      label: "LinkedIn",
+      value: "in/farhan04",
+      href: "https://linkedin.com/in/farhan04",
+      external: true,
+    },
   ],
+};
+
+// Contact form ke words. Component mein koi string nahi likhi gayi —
+// ek line badalni ho to sirf yahi file kholni padti hai.
+//
+// Field ki maximum lambai yahan nahi hai — wo src/lib/contact-fields.ts
+// mein hai, kyunki wahi numbers server ko bhi chahiye.
+export const contactForm = {
+  nameLabel: "Your name",
+  emailLabel: "Your email",
+  messageLabel: "Message",
+  messagePlaceholder: "The role, the team, the stack — one line is enough.",
+
+  submitIdle: "Send message →",
+  submitSending: "Sending…",
+
+  // Bhejne ke baad wahi jagah par jawab, naya page nahi. Reader ko pata
+  // chalna chahiye ki aage kya hoga, sirf "thanks" nahi.
+  success: "Message sent. You'll hear back within a day.",
+
+  // Har galti ke liye alag line, kyunki "something went wrong" se reader
+  // ko pata hi nahi chalta ki ab kya kare.
+  errorEmpty: "Fill in your name, email and message first.",
+  errorEmail: "That email address doesn't look right.",
+  errorLimit:
+    "That's a few messages already — write to the address above instead.",
+  errorServer:
+    "Couldn't send it. Write to the address above and it'll reach me.",
 };

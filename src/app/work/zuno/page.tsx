@@ -8,16 +8,14 @@ import { CaseStudyPipeline } from "@/components/case-study/CaseStudyPipeline";
 import { CaseStudyScreenshots } from "@/components/case-study/CaseStudyScreenshots";
 import { SiteHeader } from "@/components/layout/SiteHeader";
 import { ContactFooter } from "@/components/sections/ContactFooter";
-import { ScrollReveal } from "@/components/ui/ScrollReveal";
+import { SiteMotion } from "@/components/ui/SiteMotion";
 import { container } from "@/lib/layout";
-
 
 export const metadata: Metadata = {
   title: "ZUNO",
   description:
     "How ZUNO answers Class 10 Science questions from 16 indexed chapters — and refuses by name when the answer isn't in them.",
 };
-
 
 export default function ZunoCaseStudy() {
   return (
@@ -32,11 +30,10 @@ export default function ZunoCaseStudy() {
         <CaseStudyNextTime />
         <CaseStudyScreenshots />
 
-      
         <div className={`${container} pb-20 md:pb-28`}>
           <Link
             href="/#work"
-            className="text-label text-ink-soft hover:text-cobalt border-line inline-block border-t pt-8 font-mono uppercase transition-colors"
+            className="text-label text-ink-soft hover:text-accent border-line inline-block border-t pt-8 font-mono uppercase transition-colors"
           >
             ← All work
           </Link>
@@ -45,8 +42,7 @@ export default function ZunoCaseStudy() {
 
       <ContactFooter />
 
-      
-      <ScrollReveal />
+      <SiteMotion />
     </>
   );
 }

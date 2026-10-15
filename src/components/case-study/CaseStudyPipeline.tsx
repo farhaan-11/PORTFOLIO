@@ -12,7 +12,7 @@ import { container, sectionPadding } from "@/lib/layout";
        arrows ke saath. Phone pe ye apne aap wrap ho jata hai.
     2. Neeche 7 numbered rows — har step kya karta hai.
 
-  Do model call cobalt mein hain. Isse ek dekhne mein pata chal jata hai ki
+  Do model call accent mein hain. Isse ek dekhne mein pata chal jata hai ki
   paisa kahan kharch hota hai — aur yahi poore design ka sabse kaam ka hissa hai.
 */
 export function CaseStudyPipeline() {
@@ -25,7 +25,7 @@ export function CaseStudyPipeline() {
       {/* Ek nazar ka path. flex-wrap isliye ki phone pe ye apne aap toot jaye */}
       <div
         data-reveal
-        className="border-line bg-paper-2 mt-10 flex flex-wrap items-center gap-x-3 gap-y-2 border p-5"
+        className="border-line bg-paper-2 mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 border p-5"
       >
         {pipeline.map((step, index) => (
           <span key={step.short} className="flex items-center gap-3">
@@ -34,7 +34,7 @@ export function CaseStudyPipeline() {
             <span
               className={
                 step.modelCall
-                  ? "text-label text-cobalt font-mono uppercase"
+                  ? "text-label text-accent font-mono uppercase"
                   : "text-label text-ink-soft font-mono uppercase"
               }
             >
@@ -45,7 +45,7 @@ export function CaseStudyPipeline() {
       </div>
 
       <p className="text-label text-ink-soft mt-3 font-mono uppercase">
-        <span className="text-cobalt">Blue</span> = the two model calls
+        <span className="text-accent">Blue</span> = the two model calls
       </p>
 
       {/* Detail rows. ol isliye ki order khud ek information hai. */}
@@ -57,13 +57,13 @@ export function CaseStudyPipeline() {
             className="border-line border-b py-7 md:grid md:grid-cols-12 md:gap-10"
           >
             <div className="flex gap-4 md:col-span-4">
-              <span className="text-label text-cobalt font-mono tabular-nums">
+              <span className="text-label text-accent font-mono tabular-nums">
                 {/* 1 ko "01" banata hai */}
                 {String(index + 1).padStart(2, "0")}
               </span>
 
               <div>
-                <h3 className="font-heading font-medium">{step.name}</h3>
+                <h3 className="font-heading text-lg">{step.name}</h3>
                 <p className="text-label text-ink-soft mt-2 font-mono uppercase">
                   {step.detail}
                 </p>
@@ -85,9 +85,9 @@ export function CaseStudyPipeline() {
       */}
       <div
         data-reveal
-        className="border-line bg-paper-2 mt-16 border p-6 md:p-8"
+        className="border-line bg-paper-2 mt-12 border p-6 md:p-8"
       >
-        <h3 className="font-heading text-lg font-medium">
+        <h3 className="font-heading text-xl">
           Where a turn ends without an answer
         </h3>
 
@@ -97,7 +97,7 @@ export function CaseStudyPipeline() {
               key={exit.label}
               className="border-line flex flex-col gap-1 border-t py-4 sm:flex-row sm:gap-8"
             >
-              <dt className="text-label text-cobalt font-mono uppercase sm:w-36 sm:shrink-0 sm:pt-1">
+              <dt className="text-label text-accent font-mono uppercase sm:w-36 sm:shrink-0 sm:pt-1">
                 {exit.label}
               </dt>
               <dd className="text-ink-soft max-w-[62ch]">{exit.text}</dd>

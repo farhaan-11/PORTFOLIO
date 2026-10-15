@@ -101,19 +101,14 @@ export function AskPanel() {
         {askPanel.label}
       </h2>
 
-      <p
-        data-reveal
-        className="font-heading text-title mt-8 max-w-2xl font-semibold"
-      >
+      <p data-anim="rise" className="font-heading text-title mt-8 max-w-2xl">
         {askPanel.heading}
       </p>
 
-      <p data-reveal className="text-ink-soft mt-4 max-w-[62ch]">
-        {askPanel.intro}
-      </p>
+      <p className="text-ink-soft mt-4 max-w-[62ch]">{askPanel.intro}</p>
 
       <form
-        className="border-line mt-10 flex flex-col gap-4 border-t pt-6 sm:flex-row sm:items-end sm:gap-6"
+        className="border-line mt-8 flex flex-col gap-4 border-t pt-6 sm:flex-row sm:items-end sm:gap-6"
         onSubmit={(event) => {
           event.preventDefault();
           askQuestion(question);
@@ -137,13 +132,13 @@ export function AskPanel() {
           value={question}
           onChange={(event) => setQuestion(event.target.value)}
           placeholder={askPanel.placeholder}
-          className="text-ink border-line placeholder:text-ink-soft/60 focus:border-cobalt w-full border-b bg-transparent py-2 transition-colors outline-none"
+          className="text-ink border-line placeholder:text-ink-soft/60 focus:border-accent w-full border-b bg-transparent py-2 transition-colors outline-none"
         />
 
         <button
           type="submit"
           disabled={isLoading}
-          className="text-label text-ink-soft border-line hover:text-cobalt hover:border-cobalt cursor-pointer border px-4 py-2 font-mono uppercase transition-colors disabled:cursor-default disabled:opacity-50 sm:shrink-0"
+          className="text-label text-ink-soft border-line hover:text-accent hover:border-accent cursor-pointer border px-4 py-2 font-mono uppercase transition-colors disabled:cursor-default disabled:opacity-50 sm:shrink-0"
         >
           {isLoading ? askPanel.loadingLabel : askPanel.submitLabel}
         </button>
@@ -152,14 +147,18 @@ export function AskPanel() {
       {/*
         Suggested sawaal. Ye panel ka sabse kaam ka hissa hai — koi apne
         aap acha sawaal nahi sochta, aur khaali box ke saamne log kuch nahi likhte.
+
+        Phone pe ek-ek line mein (flex-col). Teen sawaal the tab wrap theek
+        tha, par chhe underline wale link ek saath wrap hone pe ye pata hi
+        nahi chalta ki ek sawaal kahan khatam hua aur agla kahan shuru.
       */}
-      <ul className="mt-6 flex flex-wrap gap-x-6 gap-y-3">
+      <ul className="mt-6 flex flex-col gap-3 sm:flex-row sm:flex-wrap sm:gap-x-6 sm:gap-y-3">
         {askPanel.suggestions.map((suggestion) => (
           <li key={suggestion}>
             <button
               type="button"
               onClick={() => askQuestion(suggestion)}
-              className="text-ink-soft hover:text-cobalt cursor-pointer text-left text-sm underline decoration-dotted underline-offset-4 transition-colors"
+              className="text-ink-soft hover:text-accent cursor-pointer text-left text-sm underline decoration-dotted underline-offset-4 transition-colors"
             >
               {suggestion}
             </button>
@@ -177,8 +176,9 @@ export function AskPanel() {
       */}
       {(isLoading || answer.length > 0) && (
         <div
+          data-enter="1"
           aria-live="polite"
-          className="border-line bg-paper-2 mt-10 border-t px-5 py-6 sm:px-6"
+          className="border-line bg-paper-2 mt-8 border-t px-5 py-6 sm:px-6"
         >
           <p className="text-label text-ink-soft font-mono uppercase">
             {sourceLabel || askPanel.loadingLabel}
@@ -188,7 +188,7 @@ export function AskPanel() {
             {answer}
             {/* Patli line jo bata deti hai ki jawab abhi likha ja raha hai */}
             {isLoading && (
-              <span className="bg-cobalt ml-0.5 inline-block h-4 w-1.5 align-middle" />
+              <span className="bg-accent ml-0.5 inline-block h-4 w-1.5 align-middle" />
             )}
           </p>
         </div>

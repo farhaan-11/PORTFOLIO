@@ -8,23 +8,29 @@
   Yahan ek value badlo, poori site badal jayegi.
 */
 @theme {
-  /* Page ka background. Pure white nahi — woh screen pe chubhta hai */
-  --color-paper: #fbfaf8;
+  /* Page ka background. Pure white nahi — woh screen pe chubhta hai.
+     Pehle #fbfaf8 (halka warm) tha; ab thoda thanda off-white, taaki
+     serif heading ka kaala aur green accent dono saaf baithein. */
+  --color-paper: #f8f8f5;
 
-  /* Thoda gehra paper. Metric strip jaise band aur row hover ke liye */
-  --color-paper-2: #f2f0ea;
+  /* Thoda gehra paper. Contact band aur row hover ke liye */
+  --color-paper-2: #efefe9;
 
   /* Main text. Pure black nahi — woh paper pe bhaari lagta hai */
-  --color-ink: #121214;
+  --color-ink: #16161a;
 
   /* Halka text: labels, dates, stack line, meta */
-  --color-ink-soft: #6b6a66;
+  --color-ink-soft: #6c6c70;
 
   /* Hairline. Sirf divider aur border — editorial layout isi se banta hai */
-  --color-line: #e3e0d9;
+  --color-line: #e0e0da;
 
-  /* Accent. Sirf yahi ek rang hai — links, numbers, hover */
-  --color-cobalt: #1d3fd4;
+  /* Accent. Sirf yahi ek rang hai — links, numbers, hover.
+     Cobalt blue se deep green pe badla gaya: blue har tech portfolio ka
+     default hai, aur bade serif heading ke saath wo thanda lagta tha.
+     Ye green paper pe shaant rehta hai par number aur link pe turant dikhta hai.
+     Token ka naam bhi badla: use `cobalt` kehna ab jhooth hota. */
+  --color-accent: #0e6e4f;
 }
 
 /*
@@ -32,8 +38,8 @@
   yahan sirf unhe naam diye ja rahe hain.
 */
 @theme {
-  --font-heading: var(--font-archivo), ui-sans-serif, sans-serif;
-  --font-body: var(--font-source-sans), ui-sans-serif, sans-serif;
+  --font-heading: var(--font-instrument-serif), ui-serif, Georgia, serif;
+  --font-body: var(--font-instrument-sans), ui-sans-serif, sans-serif;
   --font-mono: var(--font-plex-mono), ui-monospace, monospace;
 }
 
@@ -47,18 +53,19 @@
 */
 @theme {
   /* Hero ki badi headline */
-  --text-display: clamp(2.25rem, 6vw, 3.5rem);
-  --text-display--line-height: 1.05;
-  --text-display--letter-spacing: -0.02em;
+  --text-display: clamp(2.5rem, 7vw, 4.125rem);
+  --text-display--line-height: 1.03;
+  /* Serif ko grotesque jitna tight nahi karna — counters band ho jate hain */
+  --text-display--letter-spacing: -0.015em;
 
   /* Section ke headings */
-  --text-title: clamp(1.5rem, 3vw, 1.75rem);
-  --text-title--line-height: 1.2;
+  --text-title: clamp(1.6rem, 3vw, 1.9rem);
+  --text-title--line-height: 1.15;
   --text-title--letter-spacing: -0.01em;
 
   /* Hero ke neeche wali line */
-  --text-lead: 1.125rem;
-  --text-lead--line-height: 1.6;
+  --text-lead: 1.0625rem;
+  --text-lead--line-height: 1.62;
 
   /* Chhote mono labels: SELECTED WORK, 01, 02 */
   --text-label: 0.75rem;
@@ -67,37 +74,92 @@
 }
 
 /*
-  Nav ke link page ke section pe jump karte hain. Ye do cheezein
-  us jump ko theek karti hain.
+  Nav ke link page ke section pe jump karte hain.
 */
 html {
-  /* Jump jhatke se nahi, scroll hoke jaye */
-  scroll-behavior: smooth;
   /* Section bilkul upar chipke nahi — thodi hawa chhodo */
   scroll-padding-top: 2rem;
 }
 
 /*
-  Scroll reveal.
-
-  Sabse zaroori rule: content DEFAULT mein visible hai.
-  Chhupane wala rule sirf tab lagta hai jab <html> pe "js" class ho,
-  aur wo class ek chhota script lagata hai. JS fail ho to class lagti hi
-  nahi aur poora page normal dikhta hai — JS ke bharose kabhi nahi chhodna.
+  Smooth scroll sirf un logon ke liye jinhone motion band nahi kiya.
+  Pehle ye bina guard ke tha — matlab motion sickness wali setting lagane
+  ke baad bhi page smooth-scroll karta tha. Wahi ek asli bug tha.
 */
 @media (prefers-reduced-motion: no-preference) {
-  .js [data-reveal] {
-    opacity: 0;
-    transform: translateY(12px);
-    transition:
-      opacity 600ms ease-out,
-      transform 600ms ease-out;
+  html {
+    scroll-behavior: smooth;
   }
+}
 
-  .js [data-reveal][data-revealed="true"] {
+/*
+  Animation — poore site pe sirf chaar move.
+
+  Do alag tareeke hain, aur dono alag wajah se:
+
+  1. [data-enter]  — load pe ya element ke screen pe aate hi chalta hai.
+     Ye CSS animation hai, kisi JS ka intezaar nahi karta. Isliye hero aur
+     wo cheezein jo JS se baad mein banti hain (form ka jawab, ask panel ka
+     answer) isi ko use karti hain.
+
+  2. Scroll wali saari animation ab GSAP karta hai (SiteMotion.tsx), CSS nahi.
+     Wahan content ko GSAP hi chhupata hai — matlab JS na chale to sab
+     normal dikhta hai, kuch bhi opacity 0 pe atak nahi sakta.
+
+  Curve dono ka ek hi: cubic-bezier(0.22, 1, 0.36, 1). Ye shuru mein tez
+  bhagta hai aur aakhir mein dheere settle hota hai — isi se "arrive" wali
+  feel aati hai. CSS ka plain ease-out iske saamne susta lagta hai.
+*/
+@keyframes enter {
+  from {
+    opacity: 0;
+    transform: translateY(14px);
+  }
+  to {
     opacity: 1;
     transform: none;
   }
+}
+
+@media (prefers-reduced-motion: no-preference) {
+  [data-enter] {
+    /* `both` isliye ki animation shuru hone se pehle bhi pehli frame lage */
+    animation: enter 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
+  }
+
+  /* Hero ki teen line ek ke baad ek. 60ms se zyada rakha to line
+     alag-alag aati hui dikhti hain, ek sequence jaisi nahi. */
+  [data-enter="2"] {
+    animation-delay: 60ms;
+  }
+
+  [data-enter="3"] {
+    animation-delay: 120ms;
+  }
+}
+
+/*
+  Lenis (smooth scroll) ke chaar zaroori rules.
+
+  Lenis khud `lenis` class <html> pe lagata hai. Ye rules usi ke liye hain:
+  page ki height natural rahe, aur native smooth-scroll band ho jaye —
+  warna do smooth scroll ek saath ladte hain aur scroll phisalta hai.
+*/
+html.lenis,
+html.lenis body {
+  height: auto;
+}
+
+.lenis.lenis-smooth {
+  scroll-behavior: auto !important;
+}
+
+.lenis.lenis-smooth [data-lenis-prevent] {
+  overscroll-behavior: contain;
+}
+
+.lenis.lenis-stopped {
+  overflow: hidden;
 }
 
 /*

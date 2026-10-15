@@ -13,11 +13,13 @@ export function Stack() {
     <section className={`${container} ${sectionPadding}`}>
       <h2 className="text-label text-ink-soft font-mono uppercase">Stack</h2>
 
-      <dl className="border-line mt-10 border-t">
+      <span data-rule className="bg-line mt-8 block h-px" />
+
+      <dl data-anim-group>
         {stack.map((group) => (
           <div
             key={group.group}
-            data-reveal
+            data-anim="row"
             className="border-line flex flex-col gap-2 border-b py-5 sm:flex-row sm:gap-8"
           >
             <dt className="text-label text-ink-soft font-mono uppercase sm:w-40 sm:shrink-0 sm:pt-1">

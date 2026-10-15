@@ -18,7 +18,7 @@ export function CaseStudyConstraints() {
         What made it hard
       </h2>
 
-      <div className="border-line mt-10 border-t">
+      <div className="border-line mt-8 border-t">
         {constraints.map((constraint) => (
           <div
             key={constraint.title}
@@ -26,12 +26,10 @@ export function CaseStudyConstraints() {
             className="border-line border-b py-8 md:grid md:grid-cols-12 md:gap-10"
           >
             <div className="md:col-span-4">
-              <p className="text-label text-cobalt font-mono uppercase">
+              <p className="text-label text-accent font-mono uppercase">
                 {constraint.label}
               </p>
-              <h3 className="font-heading mt-3 text-lg font-medium">
-                {constraint.title}
-              </h3>
+              <h3 className="font-heading mt-3 text-xl">{constraint.title}</h3>
             </div>
 
             <p className="text-ink-soft mt-3 max-w-[62ch] md:col-span-8 md:mt-0">

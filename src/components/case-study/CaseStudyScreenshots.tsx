@@ -20,10 +20,10 @@ export function CaseStudyScreenshots() {
         What it looks like
       </h2>
 
-      <div className="mt-10 space-y-14">
+      <div className="mt-8 space-y-12">
         {screenshots.map((shot) => (
           <figure key={shot.label} data-reveal>
-            <p className="text-label text-cobalt font-mono uppercase">
+            <p className="text-label text-accent font-mono uppercase">
               {shot.label}
             </p>
 

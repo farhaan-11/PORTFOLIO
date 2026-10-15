@@ -15,10 +15,7 @@ export function CaseStudyIntro() {
         {intro.label}
       </p>
 
-      <h1
-        data-reveal
-        className="font-heading text-display mt-6 max-w-3xl font-semibold"
-      >
+      <h1 data-reveal className="font-heading text-display mt-6 max-w-[18ch]">
         {intro.title}
       </h1>
 
@@ -40,7 +37,7 @@ export function CaseStudyIntro() {
         href={intro.link}
         target="_blank"
         rel="noreferrer"
-        className="text-label text-cobalt mt-8 inline-block font-mono underline underline-offset-4"
+        className="text-label text-accent mt-8 inline-block font-mono underline underline-offset-4"
       >
         {intro.linkLabel} ↗
       </a>

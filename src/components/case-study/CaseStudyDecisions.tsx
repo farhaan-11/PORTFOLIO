@@ -19,18 +19,18 @@ export function CaseStudyDecisions() {
         Four decisions
       </h2>
 
-      <div className="border-line mt-10 border-t">
+      <div className="border-line mt-8 border-t">
         {decisions.map((decision, index) => (
           <article
             key={decision.title}
             data-reveal
-            className="border-line border-b py-10"
+            className="border-line border-b py-8"
           >
-            <span className="text-label text-cobalt font-mono tabular-nums">
+            <span className="text-label text-accent font-mono tabular-nums">
               {String(index + 1).padStart(2, "0")}
             </span>
 
-            <h3 className="font-heading text-title mt-3 max-w-[40ch] font-semibold">
+            <h3 className="font-heading text-title mt-3 max-w-[40ch]">
               {decision.title}
             </h3>
 
