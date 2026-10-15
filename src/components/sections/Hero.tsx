@@ -28,27 +28,17 @@ export function Hero() {
         ek line 130 character ki ho jati hai aur aankh wapas aate hue kho jati hai.
       */}
       <p data-reveal className="text-lead text-ink-soft mt-6 max-w-[62ch]">
-        {hero.summary}
+        {hero.summaryStart}
+        {/*
+          Refusal wala phrase hi poore product ka daava hai, isliye sirf
+          yahi highlight hota hai. <strong> use kiya, <span> nahi —
+          ye zor screen reader ko bhi sunai dena chahiye.
+        */}
+        <strong className="text-cobalt font-semibold">
+          {hero.summaryHighlight}
+        </strong>
+        {hero.summaryEnd}
       </p>
-
-      {/*
-        Status rows ledger shakal mein: mono label baayen, text daayen.
-        Yahi shape aage Experience aur Stack mein dobara aata hai —
-        isi repeat se page designed lagta hai, naye colors se nahi.
-      */}
-      <dl data-reveal className="border-line mt-12 border-t pt-6">
-        {hero.status.map((row) => (
-          <div
-            key={row.label}
-            className="flex flex-col gap-1 py-2 sm:flex-row sm:gap-8"
-          >
-            <dt className="text-label text-ink-soft font-mono uppercase sm:w-28 sm:shrink-0 sm:pt-1">
-              {row.label}
-            </dt>
-            <dd>{row.text}</dd>
-          </div>
-        ))}
-      </dl>
     </section>
   );
 }

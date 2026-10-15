@@ -23,24 +23,21 @@ export const hero = {
 
   headline: "The model was the easy part.",
 
-  // Headline ek daava hai. Ye line usey turant prove karti hai —
-  // teen alag ilaake: retrieval, caching, traffic.
-  summary:
-    "On ZUNO — a Science tutor for Hindi-medium students — the real work was Hinglish queries that returned nothing, a cache that could serve wrong answers for 30 days after one outage, and a rate limiter that broke the moment a whole classroom logged in.",
-
-  // Dono ka shape ek jaisa hai, isliye ek list hai — design inhe ek saath render karega.
-  status: [
-    {
-      label: "Right now",
-      text: "Rebuilding ZUNO's retrieval layer in Python and FastAPI.",
-    },
-    {
-      label: "Open to",
-      // "AI engineer" jaan-boojh ke nahi likha — Farhan model train ya fine-tune
-      // nahi karta, aur hero mein jo jhooth hai wahi interview ka pehla sawaal banta hai.
-      text: "Full-stack roles where AI is part of the product.",
-    },
-  ],
+  // Headline ek daava hai. Ye line usey turant prove karti hai.
+  //
+  // Yahan bug stories jaan-boojh ke nahi hain. ZUNO ka sabse strong part
+  // product hai: jawab sirf Bihar Board ke syllabus se aata hai, aur jo
+  // us syllabus mein nahi hai uspe wo saaf mana kar deta hai — guess nahi karta.
+  //
+  // Subject ka naam bhi jaan-boojh ke nahi hai. Abhi sirf Science hai,
+  // aage aur subject aayenge — tab ye line waisi ki waisi chalegi.
+  //
+  // Teen tukde isliye hain ki beech wala phrase cobalt mein highlight hota hai.
+  // Ek hi string hoti to component ko usme se phrase dhoondhna padta.
+  summaryStart:
+    "I built ZUNO — a tutor for Bihar Board Class 10. It answers only from the board's syllabus. Anything outside it gets an honest ",
+  summaryHighlight: "“that's not in your syllabus”",
+  summaryEnd: " — not a guess.",
 };
 
 // Hero ke neeche ki metric strip. Chaar numbers, teen alag projects se.
