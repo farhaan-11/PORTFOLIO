@@ -35,22 +35,25 @@ let dayStartedAt = Date.now();
 
 export { readVisitorId };
 
+/*
+  Ye do function sirf dekhte hain, ginte nahi.
+
+  Ginti alag isliye hai: pehle ye check karke hi ginti bhi badha di jaati
+  thi, to mail bhejna fail hone par bhi visitor ka hisaab kat jaata tha.
+  Natija — key galat hone par teen koshish ke baad banda ek ghante ke liye
+  band, jabki ek bhi mail gaya hi nahi. Ab ginti sirf kaamyaab mail par.
+*/
+
 // true = ye visitor aur message bhej sakta hai.
 export function isContactVisitorWithinLimit(visitorId: string) {
   const now = Date.now();
   const record = visitors.get(visitorId);
 
   if (!record || now - record.windowStartedAt > VISITOR_WINDOW_MS) {
-    visitors.set(visitorId, { count: 1, windowStartedAt: now });
     return true;
   }
 
-  if (record.count >= MESSAGES_PER_VISITOR) {
-    return false;
-  }
-
-  record.count = record.count + 1;
-  return true;
+  return record.count < MESSAGES_PER_VISITOR;
 }
 
 // true = aaj ka budget bacha hua hai.
@@ -65,6 +68,17 @@ export function isContactWithinDailyBudget() {
   return messagesToday < MESSAGES_PER_DAY;
 }
 
-export function countSentMessage() {
+// Ye tabhi chalta hai jab mail sach mein chala gaya ho. Dono hisaab
+// (visitor ka aur din ka) yahin ek saath badhte hain.
+export function countSentMessage(visitorId: string) {
+  const now = Date.now();
+  const record = visitors.get(visitorId);
+
+  if (!record || now - record.windowStartedAt > VISITOR_WINDOW_MS) {
+    visitors.set(visitorId, { count: 1, windowStartedAt: now });
+  } else {
+    record.count = record.count + 1;
+  }
+
   messagesToday = messagesToday + 1;
 }
