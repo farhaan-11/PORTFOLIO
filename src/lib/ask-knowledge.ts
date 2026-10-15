@@ -58,10 +58,12 @@ export function buildKnowledge() {
     ),
 
     section(
-      "Projects",
+      "Work (jobs and personal projects, same list as the site)",
       work.map((project) =>
         [
-          `- ${project.title} — ${project.tagline} (${project.period})`,
+          // `context` bhi bhej rahe hain, warna panel nahi bata payega ki
+          // Rollix wala kaam ek contract job thi aur RentalWave apna project.
+          `- ${project.title} — ${project.tagline} (${project.context}, ${project.period})`,
           `  Stack: ${project.stack.join(", ")}`,
           `  ${project.description}`,
           project.link ? `  Live: ${project.link}` : "  No public link.",

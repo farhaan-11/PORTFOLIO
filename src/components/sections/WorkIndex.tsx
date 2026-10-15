@@ -11,6 +11,10 @@ import { container, sectionPadding } from "@/lib/layout";
 
   Number list ke order se banta hai (pehla = 01), content file mein likha nahi hai —
   warna entry upar-neeche karne pe number galat ho jate.
+
+  Ab is list mein jobs bhi hain. Har row ki mono line pehle sirf tareekh dikhati
+  thi; ab wo "kahan · kab" dikhati hai (ROLLIX (CONTRACT) · MAY 2025 — AUG 2025).
+  Isi wajah se alag "Where I've worked" section ki zaroorat khatam ho gayi.
 */
 export function WorkIndex() {
   return (
@@ -36,18 +40,22 @@ export function WorkIndex() {
                 Pehli entry (ZUNO) ka title thoda bada hai. Ye 14 mahine ka kaam
                 hai aur page ka sabse bada daava — baaki dono uske barabar nahi hain.
               */}
+              {/*
+                Hover pe cobalt sirf tab jab title sach mein click hota ho,
+                yaani jab case study page ho. Warna reader title pe click
+                karta hai aur kuch nahi hota — aur chhota dhoka bhi page ka
+                bharosa girata hai.
+              */}
               <h3
-                className={
-                  index === 0
-                    ? "font-heading group-hover:text-cobalt mt-3 text-3xl font-semibold transition-colors"
-                    : "font-heading text-title group-hover:text-cobalt mt-3 font-semibold transition-colors"
-                }
+                className={[
+                  "font-heading mt-3 font-semibold",
+                  // Pehli entry ka title thoda bada: ye page ka sabse bada daava hai.
+                  index === 0 ? "text-3xl" : "text-title",
+                  project.caseStudy
+                    ? "group-hover:text-cobalt transition-colors"
+                    : "",
+                ].join(" ")}
               >
-                {/*
-                  Jiska case study page hai, uska title bhi click hota hai.
-                  Title hover pe cobalt hota hai — agar wo click na hota to
-                  reader ko dhoka lagta.
-                */}
                 {project.caseStudy ? (
                   <Link href={project.caseStudy}>{project.title}</Link>
                 ) : (
@@ -56,8 +64,14 @@ export function WorkIndex() {
               </h3>
 
               <p className="text-ink-soft mt-1">{project.tagline}</p>
+
+              {/*
+                Company aur tareekh ek hi mono line mein. Company ko alag line
+                dene se row chaar line ki ho jati aur list ghani lagne lagti —
+                aur yahan hero kaam hai, employer nahi.
+              */}
               <p className="text-label text-ink-soft mt-2 font-mono uppercase">
-                {project.period}
+                {project.context} · {project.period}
               </p>
             </div>
 
