@@ -40,9 +40,8 @@ export const hero = {
   summaryEnd: " — not a guess.",
 };
 
-// Hero ke neeche ki metric strip. Chaar numbers, teen alag projects se.
-// Har number ke saath project ka naam zaroori hai — warna reader maan lega
-// ki sab ek hi project ke hain, aur phir teeno claims kamzor ho jate hain.
+// Homepage pe ab ye numbers kahin nahi dikhte — metric strip hata di gayi hai.
+// Ye list sirf Ask panel ke knowledge base ke liye bachi hai (ask-knowledge.ts).
 export const metrics = [
   {
     value: "0 → 5",

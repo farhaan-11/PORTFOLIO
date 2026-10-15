@@ -4,7 +4,6 @@ import { AskPanel } from "@/components/sections/AskPanel";
 import { ContactFooter } from "@/components/sections/ContactFooter";
 import { Experience } from "@/components/sections/Experience";
 import { Hero } from "@/components/sections/Hero";
-import { MetricStrip } from "@/components/sections/MetricStrip";
 import { Stack } from "@/components/sections/Stack";
 import { WorkIndex } from "@/components/sections/WorkIndex";
 import { ScrollReveal } from "@/components/ui/ScrollReveal";
@@ -22,7 +21,6 @@ export default function Home() {
 
       <main>
         <Hero />
-        <MetricStrip />
         <WorkIndex />
         <Experience />
         <Stack />
