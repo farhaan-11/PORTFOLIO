@@ -19,7 +19,10 @@ export function Stack() {
           <div
             key={group.group}
             data-anim="row"
-            className="border-line flex flex-col gap-2 border-b py-6 sm:flex-row sm:gap-8"
+            // py-6 se py-5: row ka gap 48px se 40px. Wahi wajah jo WorkIndex
+            // mein hai — section ka gap (160px) row ke gap se saaf bada
+            // dikhna chahiye, warna naya section shuru hona mehsoos nahi hota.
+            className="border-line flex flex-col gap-2 border-b py-5 sm:flex-row sm:gap-8"
           >
             <dt className="text-label text-ink-soft font-mono uppercase sm:w-40 sm:shrink-0 sm:pt-1.5">
               {group.group}

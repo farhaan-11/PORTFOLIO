@@ -24,10 +24,23 @@ export function WorkIndex() {
 
       <div data-anim-group>
         {work.map((project, index) => (
+          // py-10 se py-8: row ka gap 80px se 64px.
+          //
+          // Ye row ko ghana karne ke liye nahi hai — section ke gap se farak
+          // banane ke liye hai. Section gap 160px hai, to 64px row gap ke
+          // saamne wo 2.5x bada padta hai, aur aankh ko saaf pata chalta hai
+          // ki kahan ek list khatam hui aur kahan naya hissa shuru. 80px pe
+          // wo farak sirf 1.6x tha, aur seema dikhti hi nahi thi.
+          //
+          // Ek aur fayda: kasi hui rows zyada "list" lagti hain, aur isi se
+          // page "Index" jaisa padhta hai — jo is design ka naam hai.
+          //
+          // py-8 hi farsh hai. Isse neeche jaane pe daayen column ka 62ch
+          // wala description block upar-neeche se chipakne lagta hai.
           <article
             key={project.title}
             data-anim="row"
-            className="group border-line hover:bg-paper-2 border-b py-10 transition-colors md:-mx-5 md:grid md:grid-cols-12 md:gap-10 md:px-5"
+            className="group border-line hover:bg-paper-2 border-b py-8 transition-colors md:-mx-5 md:grid md:grid-cols-12 md:gap-10 md:px-5"
           >
             <div className="md:col-span-5">
               <span className="text-label text-accent font-mono">

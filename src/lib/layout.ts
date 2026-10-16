@@ -20,7 +20,23 @@ export const container = "mx-auto w-full max-w-[76rem] px-6 md:px-10";
 // Dusri baar aur kam kiya gaya: 80+80 bhi bada lag raha tha. Ab 64+64 =
 // 128px desktop pe, 96px phone pe. Isse neeche jaane pe section ek doosre
 // se chipakne lagte hain aur list ek lambi deewar ban jati hai.
-export const sectionPadding = "py-12 md:py-16";
+//
+// Teesri baar — 16 Oct 2026 — wapas thoda badhaya gaya, aur wajah "khaali
+// jagah kam/zyada" nahi hai, RATIO hai:
+//
+// Page pe do tarah ke gap hain — row ke beech, aur section ke beech. Aankh
+// gap ke SIZE se tay karti hai ki ek cheez kahan khatam hui. 128px section
+// gap ke saamne work row ka gap 80px tha, yaani sirf 1.6x — aur phone pe
+// 96 vs 80, yaani 1.2x, jo usse bhi bura tha. Do gap jab ek jaise lagein
+// to aankh ko kuch nahi batata ki naya hissa shuru hua, aur poora page ek
+// lambi list jaisa padhta hai.
+//
+// Ab: desktop 80+80 = 160px, phone 64+64 = 128px. Row ka gap bhi kasa gaya
+// hai (WorkIndex py-8 = 64px), to ratio 2.5x desktop aur 2x phone.
+//
+// Page lamba nahi hua: rows se ~64px bacha, section gap mein ~96px gaya —
+// net ~32px. Ye jagah badhane wala badlav nahi, jagah dobara baantne wala hai.
+export const sectionPadding = "py-16 md:py-20";
 
 // Hero ki apni padding. Upar thodi zyada hawa (header ke neeche page shuru
 // hota hai, wahan tanga hua nahi lagna chahiye) aur neeche kam, taaki About
