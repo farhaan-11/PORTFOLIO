@@ -1,4 +1,5 @@
 import { ContactForm } from "@/components/sections/ContactForm";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { contact, nav } from "@/content/profile";
 import { container, sectionPadding } from "@/lib/layout";
 
@@ -21,17 +22,23 @@ export function ContactFooter() {
   return (
     <footer id="contact" className="border-line bg-paper-2 border-t">
       <div className={`${container} ${sectionPadding}`}>
-        <h2 className="text-label text-ink-soft font-mono uppercase">
-          Contact
-        </h2>
+        <SectionHeading>Contact</SectionHeading>
 
-        <div className="mt-8 grid gap-12 md:grid-cols-12 md:gap-16">
-          <div data-anim="rise" className="md:col-span-7">
+        {/*
+          Do column lg se shuru hote hain, md se nahi.
+
+          768px pe 7/5 baantne par daayen column sirf 260px ka bachta tha, aur
+          email (farhanraza2239@gmail.com) usme beech se toot ke do line mein
+          aata tha. Usi width pe form ke do input 170px ke reh jate the.
+          Tablet pe ek ke neeche ek rakhna dono se behtar hai.
+        */}
+        <div className="mt-8 grid gap-12 lg:grid-cols-12 lg:gap-16">
+          <div data-anim="rise" className="lg:col-span-7">
             {/*
               Sawaal, suchna nahi. "Get in touch" reader se kuch nahi maangta;
               "What are you building?" ke baad wo apne aap jawab sochne lagta hai.
             */}
-            <h3 className="font-heading text-3xl leading-[1.08] md:text-5xl">
+            <h3 className="font-heading text-3xl leading-[1.08] sm:text-4xl lg:text-5xl">
               {contact.heading}
             </h3>
 
@@ -40,7 +47,7 @@ export function ContactFooter() {
             <ContactForm />
           </div>
 
-          <div className="md:col-span-5">
+          <div className="lg:col-span-5">
             <span data-rule className="bg-line block h-px" />
 
             <dl data-anim-group>
@@ -67,7 +74,7 @@ export function ContactFooter() {
                         href={channel.href}
                         target={channel.external ? "_blank" : undefined}
                         rel={channel.external ? "noreferrer" : undefined}
-                        className="hover:text-accent flex items-baseline gap-3 text-[15px] transition-colors"
+                        className="hover:text-accent -my-1 flex items-baseline gap-3 py-1 text-[15px] transition-colors"
                       >
                         <span className="break-all">{channel.value}</span>
                         {channel.external && (
@@ -98,7 +105,7 @@ export function ContactFooter() {
           */}
           <a
             href="#top"
-            className="text-label text-ink-soft hover:text-accent font-mono uppercase transition-colors"
+            className="text-label text-ink-soft hover:text-accent -my-2 py-2 font-mono uppercase transition-colors"
           >
             Back to top ↑
           </a>

@@ -58,14 +58,34 @@
   /* Serif ko grotesque jitna tight nahi karna — counters band ho jate hain */
   --text-display--letter-spacing: -0.015em;
 
-  /* Section ke headings */
-  --text-title: clamp(1.6rem, 3vw, 1.9rem);
-  --text-title--line-height: 1.15;
+  /*
+    Index ka sabse bada kaam: project ka naam.
+
+    Ye hero aur section heading ke BEECH mein baithta hai. Pehle work row ka
+    title section heading jitna hi bada tha, isliye list mein aankh ko koi
+    bada stop nahi milta tha — poora page ek hi awaaz mein padha jata tha.
+  */
+  --text-headline: clamp(2rem, 3.4vw, 2.75rem);
+  --text-headline--line-height: 1.06;
+  --text-headline--letter-spacing: -0.015em;
+
+  /* Section ke headings. 1.9rem se 2.125rem — hero 66px ka hai, uske
+     saamne 30px ka heading section ki shuruaat jaisa nahi lagta tha. */
+  --text-title: clamp(1.75rem, 3vw, 2.125rem);
+  --text-title--line-height: 1.12;
   --text-title--letter-spacing: -0.01em;
 
-  /* Hero ke neeche wali line */
-  --text-lead: 1.0625rem;
-  --text-lead--line-height: 1.62;
+  /* Padhne wali body line. 17px se 18px — 62ch ki lambi line pe 17px
+     chhota padta hai, aur About/case study ka poora prose isi pe hai. */
+  --text-lead: 1.125rem;
+  --text-lead--line-height: 1.6;
+
+  /*
+    Sirf hero ki line. 66px headline se seedha 18px pe girna bahut bada
+    jump tha — beech ka ye size dono ko jodta hai.
+  */
+  --text-hero-lead: clamp(1.1875rem, 1.3vw, 1.375rem);
+  --text-hero-lead--line-height: 1.55;
 
   /* Chhote mono labels: SELECTED WORK, 01, 02 */
   --text-label: 0.75rem;

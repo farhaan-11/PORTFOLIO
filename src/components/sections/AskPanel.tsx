@@ -2,6 +2,7 @@
 
 import { useRef, useState } from "react";
 
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { askPanel } from "@/content/ask";
 import { findFallbackAnswer } from "@/lib/ask-fallback";
 import { container, sectionPadding } from "@/lib/layout";
@@ -97,9 +98,7 @@ export function AskPanel() {
 
   return (
     <section id="ask" className={`${container} ${sectionPadding}`}>
-      <h2 className="text-label text-ink-soft font-mono uppercase">
-        {askPanel.label}
-      </h2>
+      <SectionHeading number="04">{askPanel.label}</SectionHeading>
 
       <p data-anim="rise" className="font-heading text-title mt-8 max-w-2xl">
         {askPanel.heading}
@@ -138,7 +137,7 @@ export function AskPanel() {
         <button
           type="submit"
           disabled={isLoading}
-          className="text-label text-ink-soft border-line hover:text-accent hover:border-accent cursor-pointer border px-4 py-2 font-mono uppercase transition-colors disabled:cursor-default disabled:opacity-50 sm:shrink-0"
+          className="text-label text-ink-soft border-line hover:text-accent hover:border-accent cursor-pointer border px-4 py-3 font-mono uppercase transition-colors disabled:cursor-default disabled:opacity-50 sm:shrink-0"
         >
           {isLoading ? askPanel.loadingLabel : askPanel.submitLabel}
         </button>
@@ -158,7 +157,7 @@ export function AskPanel() {
             <button
               type="button"
               onClick={() => askQuestion(suggestion)}
-              className="text-ink-soft hover:text-accent cursor-pointer text-left text-sm underline decoration-dotted underline-offset-4 transition-colors"
+              className="text-ink-soft hover:text-accent -my-1 cursor-pointer py-1.5 text-left text-sm underline decoration-dotted underline-offset-4 transition-colors"
             >
               {suggestion}
             </button>

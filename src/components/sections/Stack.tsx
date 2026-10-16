@@ -1,3 +1,4 @@
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { stack } from "@/content/profile";
 import { container, sectionPadding } from "@/lib/layout";
 
@@ -11,21 +12,36 @@ import { container, sectionPadding } from "@/lib/layout";
 export function Stack() {
   return (
     <section className={`${container} ${sectionPadding}`}>
-      <h2 className="text-label text-ink-soft font-mono uppercase">Stack</h2>
-
-      <span data-rule className="bg-line mt-8 block h-px" />
+      <SectionHeading number="03">Stack</SectionHeading>
 
       <dl data-anim-group>
         {stack.map((group) => (
           <div
             key={group.group}
             data-anim="row"
-            className="border-line flex flex-col gap-2 border-b py-5 sm:flex-row sm:gap-8"
+            className="border-line flex flex-col gap-2 border-b py-6 sm:flex-row sm:gap-8"
           >
-            <dt className="text-label text-ink-soft font-mono uppercase sm:w-40 sm:shrink-0 sm:pt-1">
+            <dt className="text-label text-ink-soft font-mono uppercase sm:w-40 sm:shrink-0 sm:pt-1.5">
               {group.group}
             </dt>
-            <dd className="text-ink">{group.items.join(" · ")}</dd>
+
+            {/*
+              "Learning now" wali row accent mein hai, baaki ink mein.
+
+              Ye saat rows batati hain ki aaj kya aata hai; ek row batati hai
+              ki kal kya aayega. Rang ka kaam yahi hai — ek cheez ko baaki se
+              alag karna, har cheez ko sajana nahi. Isi liye poore page pe
+              accent sirf teen jagah hai: section number, link, aur ye row.
+            */}
+            <dd
+              className={
+                group.group === "Learning now"
+                  ? "text-accent text-[1.0625rem]"
+                  : "text-ink text-[1.0625rem]"
+              }
+            >
+              {group.items.join(" · ")}
+            </dd>
           </div>
         ))}
       </dl>

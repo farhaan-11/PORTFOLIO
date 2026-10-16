@@ -33,8 +33,17 @@ export function CaseStudyScreenshots() {
                   src={shot.src}
                   alt={shot.alt}
                   fill
-                  // Desktop pe ye max-w-5xl container ke andar hai, phone pe poori width
-                  sizes="(min-width: 1024px) 896px, 100vw"
+                  /*
+                    Ye container ki asli width batata hai, taaki Next sahi
+                    size ki image bheje. Pehle yahan 896px likha tha — wo
+                    purane max-w-5xl container ka naap tha. Container 1216px
+                    ka ho chuka hai, isliye desktop pe chhoti image aa rahi
+                    thi aur screenshot dhundhla dikhta tha.
+
+                    Hisaab: 1216 container - 80 padding = 1136 content.
+                    Usse chhoti screen pe padding 80 (md) ya 48 (phone).
+                  */
+                  sizes="(min-width: 1216px) 1136px, (min-width: 768px) calc(100vw - 80px), calc(100vw - 48px)"
                   className="object-contain"
                 />
               ) : (

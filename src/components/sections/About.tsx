@@ -1,3 +1,4 @@
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { about, aboutAvailability } from "@/content/profile";
 import { container, sectionPadding } from "@/lib/layout";
 
@@ -16,7 +17,7 @@ import { container, sectionPadding } from "@/lib/layout";
 export function About() {
   return (
     <section id="about" className={`${container} ${sectionPadding}`}>
-      <h2 className="text-label text-ink-soft font-mono uppercase">About</h2>
+      <SectionHeading number="01">About</SectionHeading>
 
       <div data-anim="rise" className="mt-8 max-w-[62ch] space-y-5">
         {about.map((paragraph) => (

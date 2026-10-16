@@ -1,5 +1,6 @@
 import Link from "next/link";
 import { contact, nav } from "@/content/profile";
+import { container } from "@/lib/layout";
 
 /*
   Header.
@@ -17,7 +18,13 @@ export function SiteHeader({ nested = false }: { nested?: boolean }) {
   // header pe id="top" hai — contact footer ka "Back to top" link isi pe aata hai
   return (
     <header id="top" className="border-line relative border-b">
-      <div className="mx-auto flex h-16 max-w-5xl items-center justify-between px-6 md:px-8">
+      {/*
+        Wahi container jo har section use karta hai. Pehle yahan apni alag
+        width (max-w-5xl) aur alag padding thi — isse 1024px se badi screen
+        pe header ka naam hero ki heading se 190px andar khisak jata tha,
+        aur poore page ka left edge do jagah se shuru hota dikhta tha.
+      */}
+      <div className={`${container} flex h-16 items-center justify-between`}>
         {nested ? (
           <Link
             href="/"
@@ -35,7 +42,7 @@ export function SiteHeader({ nested = false }: { nested?: boolean }) {
               <a
                 key={link.href}
                 href={`${linkPrefix}${link.href}`}
-                className="text-label text-ink-soft hover:text-accent font-mono uppercase transition-colors"
+                className="text-label text-ink-soft hover:text-accent -my-4 py-4 font-mono uppercase transition-colors"
               >
                 {link.label}
               </a>
@@ -48,7 +55,7 @@ export function SiteHeader({ nested = false }: { nested?: boolean }) {
           */}
           <a
             href={`mailto:${contact.email}`}
-            className="text-label text-ink-soft hover:text-accent font-mono uppercase transition-colors sm:hidden"
+            className="text-label text-ink-soft hover:text-accent -my-4 py-4 font-mono uppercase transition-colors sm:hidden"
           >
             Email
           </a>

@@ -96,6 +96,22 @@ export function SiteMotion() {
 
       document.addEventListener("click", onAnchorClick);
 
+      /*
+        Font aane ka intezaar — ye optional nahi hai.
+
+        SplitText heading ko LINES mein todta hai, aur line kahan tootegi ye
+        wo usi waqt ke font se naapta hai. Font abhi aaya nahi to naap
+        fallback (Georgia) se hota hai, jiske akshar chaude hain — aur jo
+        line break us waqt bana, wo hamesha ke liye jam jata hai, kyunki
+        ek baar div ban gaye to text dobara beh nahi sakta.
+
+        Isi wajah se hero ki headline kabhi-kabhi ek-ek shabd ki chhe
+        alag line mein toot jaati thi.
+      */
+      await document.fonts.ready;
+
+      if (cancelled) return;
+
       const context = gsap.context(() => {
         /*
           HERO — line by line.
@@ -109,9 +125,21 @@ export function SiteMotion() {
           '[data-anim="hero-headline"]',
         );
 
-        const intro = gsap.timeline();
+        /*
+          Teeno hero tween alag-alag hain, ek timeline mein nahi.
 
-        intro.from('[data-anim="hero-label"]', {
+          Pehle ye ek timeline thi. Par headline ka split ab font aane ke
+          baad hota hai, yaani baad mein — aur tab tak timeline chal ke
+          khatam ho chuki hoti thi. Us khatam hui timeline mein tween jodne
+          se wo kabhi chalta hi nahi tha, aur headline mask ke peeche
+          chhupi reh jaati thi. Poori headline gayab.
+
+          Delay se wahi tarteeb banti hai, bina kisi ke intezaar ke:
+            0.00s  label
+            0.30s  headline
+            0.70s  lead
+        */
+        gsap.from('[data-anim="hero-label"]', {
           y: 10,
           opacity: 0,
           duration: 0.5,
@@ -119,28 +147,45 @@ export function SiteMotion() {
         });
 
         if (headline) {
-          const split = new SplitText(headline, {
+          /*
+            autoSplit: window resize hone pe SplitText lines dobara naapta
+            hai. Iske bina ek baar bana break hamesha ke liye rehta hai —
+            phone ko ghumao ya window chhoti karo, headline wahi purane
+            break pe atki rehti hai.
+
+            Animation sirf pehli baar chalti hai. Dobara split hone pe nayi
+            line ke div bilkul saaf bante hain, yaani apni normal jagah pe
+            dikhte hain — isliye yahan content ke chhupe reh jaane ka
+            koi khatra nahi hai.
+          */
+          let introAdded = false;
+
+          SplitText.create(headline, {
             type: "lines",
             mask: "lines",
-          });
+            autoSplit: true,
+            onSplit: (split) => {
+              if (introAdded) return;
+              introAdded = true;
 
-          intro.from(
-            split.lines,
-            {
-              yPercent: 115,
-              duration: 0.95,
-              ease: "power4.out",
-              stagger: 0.08,
+              return gsap.from(split.lines, {
+                yPercent: 115,
+                duration: 0.95,
+                ease: "power4.out",
+                stagger: 0.08,
+                delay: 0.3,
+              });
             },
-            "-=0.2",
-          );
+          });
         }
 
-        intro.from(
-          '[data-anim="hero-lead"]',
-          { y: 14, opacity: 0, duration: 0.7, ease: "power3.out" },
-          "-=0.55",
-        );
+        gsap.from('[data-anim="hero-lead"]', {
+          y: 14,
+          opacity: 0,
+          duration: 0.7,
+          ease: "power3.out",
+          delay: 0.7,
+        });
 
         /*
           HAIRLINE — har rule baayen se daayen banti hai.

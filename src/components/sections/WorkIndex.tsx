@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { SectionHeading } from "@/components/ui/SectionHeading";
 import { work } from "@/content/profile";
 import { container, sectionPadding } from "@/lib/layout";
 
@@ -19,21 +20,16 @@ import { container, sectionPadding } from "@/lib/layout";
 export function WorkIndex() {
   return (
     <section id="work" className={`${container} ${sectionPadding}`}>
-      <h2 className="text-label text-ink-soft font-mono uppercase">
-        Selected work
-      </h2>
-
-      {/* Ye line khud khinchti hai (SiteMotion), isliye border ki jagah asli element hai */}
-      <span data-rule className="bg-line mt-8 block h-px" />
+      <SectionHeading number="02">Selected work</SectionHeading>
 
       <div data-anim-group>
         {work.map((project, index) => (
           <article
             key={project.title}
             data-anim="row"
-            className="group border-line hover:bg-paper-2 border-b py-8 transition-colors md:-mx-5 md:grid md:grid-cols-12 md:gap-10 md:px-5"
+            className="group border-line hover:bg-paper-2 border-b py-10 transition-colors md:-mx-5 md:grid md:grid-cols-12 md:gap-10 md:px-5"
           >
-            <div className="md:col-span-4">
+            <div className="md:col-span-5">
               <span className="text-label text-accent font-mono">
                 {/* 1 ko "01" banata hai */}
                 {String(index + 1).padStart(2, "0")}
@@ -53,7 +49,7 @@ export function WorkIndex() {
                 className={[
                   "font-heading mt-3",
                   // Pehli entry ka title thoda bada: ye page ka sabse bada daava hai.
-                  index === 0 ? "text-3xl" : "text-title",
+                  index === 0 ? "text-headline" : "text-title",
                   project.caseStudy
                     ? "group-hover:text-accent transition-colors"
                     : "",
@@ -66,7 +62,9 @@ export function WorkIndex() {
                 )}
               </h3>
 
-              <p className="text-ink-soft mt-1">{project.tagline}</p>
+              <p className="text-ink-soft mt-2 text-[1.0625rem]">
+                {project.tagline}
+              </p>
 
               {/*
                 Company aur tareekh ek hi mono line mein. Company ko alag line
@@ -78,7 +76,7 @@ export function WorkIndex() {
               </p>
             </div>
 
-            <div className="mt-6 md:col-span-8 md:mt-0">
+            <div className="mt-6 md:col-span-7 md:mt-0">
               <p className="max-w-[62ch]">{project.description}</p>
 
               {/* Stack ek hi line mein, dot se juda — list banane se jagah ziyada jati hai */}
@@ -97,7 +95,7 @@ export function WorkIndex() {
                 {project.caseStudy && (
                   <Link
                     href={project.caseStudy}
-                    className="text-label text-accent font-mono underline underline-offset-4"
+                    className="text-label text-accent -my-2 inline-block py-2 font-mono underline underline-offset-4"
                   >
                     Read the case study →
                   </Link>
@@ -108,7 +106,7 @@ export function WorkIndex() {
                     href={project.link}
                     target="_blank"
                     rel="noreferrer"
-                    className="text-label text-accent font-mono underline underline-offset-4"
+                    className="text-label text-accent -my-2 inline-block py-2 font-mono underline underline-offset-4"
                   >
                     {project.linkLabel} ↗
                   </a>

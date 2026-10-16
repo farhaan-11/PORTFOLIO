@@ -32,7 +32,7 @@ export function Hero() {
       */}
       <p
         data-anim="hero-lead"
-        className="text-lead text-ink-soft mt-6 max-w-[62ch]"
+        className="text-hero-lead text-ink-soft mt-7 max-w-[54ch]"
       >
         {hero.summaryStart}
         {/*
