@@ -12,6 +12,28 @@ import {
 
 const SOURCE_HEADER = "x-ask-source";
 
+/*
+  ─────────────────────────────────────────────────────────────
+  ASK PANEL ABHI BAND HAI — 16 Oct 2026
+  ─────────────────────────────────────────────────────────────
+
+  Panel page pe nahi dikhta (poori wajah src/app/page.tsx mein likhi hai),
+  isliye ye endpoint bhi band hai.
+
+  Sirf UI hata dena kaafi nahi tha. /api/ask internet pe khula rehta hai —
+  panel ke bina bhi koi `curl` se seedha hit kar sakta hai, aur har live
+  jawab mein poora knowledge base OpenAI ko jata hai. Yaani bina panel ke
+  wo sirf kharcha hai, fayda nahi.
+
+  404 jaan-boojh ke nahi diya. Kisi ka purana tab abhi khula ho sakta hai;
+  usey error ke bajaye ek pehle se likha asli jawab milta hai, sahi label
+  ke saath — wahi raasta jo API down hone pe pehle se chalta tha.
+
+  Neeche ka poora code chhua nahi gaya hai. Chalu karne ke liye bas isko
+  false kar do (aur page.tsx mein <AskPanel /> uncomment karo).
+*/
+const ASK_PANEL_BAND: boolean = true;
+
 // gpt-4o-mini se badla gaya. Is panel ka asli kaam sochna nahi hai — poora
 // jawab context mein pehle se maujood hota hai. Kaam ye hai ki ek saath bahut
 // saare niyam nibhaye jayein: third person, banned words, hedge nahi, refusal
@@ -55,6 +77,12 @@ export async function POST(request: Request) {
 
   if (question.length === 0) {
     return textResponse("Ask a question first.", "fallback");
+  }
+
+  // Panel band hai — upar ASK_PANEL_BAND ka comment padho. Live jawab nahi
+  // banta, OpenAI ko kuch nahi jata; sirf pehle se likha jawab wapas jata hai.
+  if (ASK_PANEL_BAND) {
+    return textResponse(findFallbackAnswer(question), "fallback");
   }
 
   if (question.length > askPanel.maxQuestionLength) {
