@@ -43,7 +43,23 @@ export function WorkIndex() {
             className="group border-line hover:bg-paper-2 border-b py-8 transition-colors md:-mx-5 md:grid md:grid-cols-12 md:gap-10 md:px-5"
           >
             <div className="md:col-span-5">
-              <span className="text-label text-accent font-mono">
+              {/*
+                Ye number ink-soft mein hai, accent mein nahi.
+
+                Pehle accent mein tha, aur wahi poore page ki sabse badi
+                accent wali galti thi: ek hi nazar mein chaar green number
+                aur do green link aa jate the. Jo rang ek screen pe chhe
+                baar aaye, wo kuch nahi kehta.
+
+                Accent ka poora rule globals.css mein --color-accent ke
+                saath likha hai. Ek line: ek nazar mein accent ka ek hi
+                matlab. Is section mein wo matlab "yahan click hota hai" hai,
+                isliye green sirf link pe bacha hai.
+
+                Number ka kaam isse kam nahi hua — wo mono hai, row ke sabse
+                upar hai, aur list ka order khud bata deta hai.
+              */}
+              <span className="text-label text-ink-soft font-mono">
                 {/* 1 ko "01" banata hai */}
                 {String(index + 1).padStart(2, "0")}
               </span>

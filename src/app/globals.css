@@ -25,11 +25,46 @@
   /* Hairline. Sirf divider aur border — editorial layout isi se banta hai */
   --color-line: #e0e0da;
 
-  /* Accent. Sirf yahi ek rang hai — links, numbers, hover.
-     Cobalt blue se deep green pe badla gaya: blue har tech portfolio ka
-     default hai, aur bade serif heading ke saath wo thanda lagta tha.
-     Ye green paper pe shaant rehta hai par number aur link pe turant dikhta hai.
-     Token ka naam bhi badla: use `cobalt` kehna ab jhooth hota. */
+  /*
+    Accent — poore page ka ek hi rang.
+
+    RULE, aur accent kahin lagane se pehle yahi padhna hai:
+    EK NAZAR MEIN ACCENT KA EK HI MATLAB HOGA.
+
+    16 Oct 2026 tak ye rule toot chuka tha. Homepage pe 12 cheezein accent
+    mein thi — 3 section number, 4 work row number, 2 live link, "Learning
+    now" row, hero ka phrase, aur scroll progress line. Unme se sirf 2 click
+    hoti thi. Matlab ek rang ke chaar matlab ban gaye the: "ye number hai",
+    "ye daava hai", "ye click hota hai", "ye abhi aata nahi hai". Jis rang ke
+    chaar matlab hon, reader usey seekh hi nahi sakta — aur jo rang kuch na
+    sikhaye, wo sirf sajavat hai.
+
+    Ab accent sirf teen jagah hai, aur teeno kabhi ek saath aankh mein nahi
+    aate:
+
+      1. Section ka number — SectionHeading. Matlab: "yahan naya hissa shuru
+         hua". Do section number ke beech 160px ka faasla hai, isliye ye ek
+         saath dikhte hi nahi aur ek doosre ko kamzor nahi karte.
+
+      2. Link — work row ka live link, aur har hover state. Matlab: "yahan
+         click hota hai".
+
+      3. Hero ka ek phrase. Poore page ka ek asli daava, aur bas ek.
+
+    Jo accent mein JAAN-BOOJH KE nahi hai:
+
+      - Work row ke number (01-04). Ye ek hi nazar mein link ke saath aate
+        the — chaar number plus do link, ek screen mein. Yahi asli dilution
+        tha. Ab ye ink-soft mein hain; unka kaam position se hota hai, rang
+        se nahi.
+
+      - "Learning now" wali Stack row. Accent "yahan dekho" ka rang hai, aur
+        usey page ki sabse kamzor row pe lagana ulta kaam karta hai.
+
+    Rang khud: cobalt blue se deep green pe badla gaya. Blue har tech
+    portfolio ka default hai, aur bade serif heading ke saath thanda lagta
+    tha. Token ka naam bhi isi liye badla — use `cobalt` kehna ab jhooth hota.
+  */
   --color-accent: #0e6e4f;
 }
 

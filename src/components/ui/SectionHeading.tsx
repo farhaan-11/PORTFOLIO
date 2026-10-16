@@ -11,9 +11,14 @@
     01 — SELECTED WORK
     ──────────────────────────────────────  (poori chaudai ki hairline)
 
-  Number accent mein hai. Ye poore page ka ek hi aisa rang hai jo dohrata
-  hai, aur isi dohraav se page "index" lagta hai — jo iske design ka naam
-  hi hai. Ek-ek jagah alag rang lagane se ye kabhi nahi aata.
+  Number accent mein hai, aur 16 Oct 2026 ke baad ye poore page ki ek hi
+  aisi accent hai jo dohrati hai — work row ke number tab ink-soft kar diye
+  gaye. Isi dohraav se page "index" lagta hai, jo iske design ka naam hi hai.
+
+  Ye dohraav rule todta nahi hai: do section number ke beech 160px ka faasla
+  hai, isliye wo kabhi ek saath aankh mein nahi aate. Rule "ek nazar mein
+  accent ka ek hi matlab" hai, "poore page mein ek hi matlab" nahi —
+  wajah globals.css mein --color-accent ke saath likhi hai.
 
   Hairline khud khinchti hai (data-rule, SiteMotion) — isliye ye border
   nahi, asli element hai.

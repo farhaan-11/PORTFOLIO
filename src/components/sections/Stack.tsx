@@ -29,20 +29,22 @@ export function Stack() {
             </dt>
 
             {/*
-              "Learning now" wali row accent mein hai, baaki ink mein.
+              Har row ek jaisi hai — "Learning now" wali bhi.
 
-              Ye saat rows batati hain ki aaj kya aata hai; ek row batati hai
-              ki kal kya aayega. Rang ka kaam yahi hai — ek cheez ko baaki se
-              alag karna, har cheez ko sajana nahi. Isi liye poore page pe
-              accent sirf teen jagah hai: section number, link, aur ye row.
+              Pehle "Learning now" wali row accent mein thi, aur usme ek
+              soch ki galti thi: accent is page pe "yahan dekho" ka rang hai,
+              aur wo rang page ki sabse kamzor row pe laga hua tha. Jo cheez
+              abhi aati nahi, usey poore page mein sabse zyada highlight
+              karna ulta kaam karta hai.
+
+              Farak ab bhi saaf hai — row ka label hi "LEARNING NOW" kehta
+              hai. Jo baat shabdon se ho jati ho, uske liye rang kharch nahi
+              karna. Accent ka poora rule globals.css mein likha hai.
+
+              Pehle yahan ek ternary tha jo dono haalat mein ek hi size deta
+              tha; ab dono branch ek jaise hain, isliye ternary hata diya.
             */}
-            <dd
-              className={
-                group.group === "Learning now"
-                  ? "text-accent text-[1.0625rem]"
-                  : "text-ink text-[1.0625rem]"
-              }
-            >
+            <dd className="text-ink text-[1.0625rem]">
               {group.items.join(" · ")}
             </dd>
           </div>

@@ -10,9 +10,10 @@ import { container, sectionPadding } from "@/lib/layout";
   hai, aakhri line batati hai ki ab kya chahiye. Isliye wo hairline ke neeche hai
   aur thodi bhaari.
 
-  Yahan accent jaan-boojh ke nahi diya. Poore page pe wo rang sirf hero ke ek
-  phrase pe hai — do jagah hote hi dono kamzor ho jate. Aur poora vaakya accent
-  mein ho to log use link samajh ke click karne lagte hain.
+  Yahan accent jaan-boojh ke nahi diya — section number ke alawa, jo har
+  section ko milta hai. Do wajah: is section mein click karne layak kuch nahi
+  hai, aur poora vaakya accent mein ho to log usey link samajh ke click karne
+  lagte hain. Accent ka poora rule globals.css mein likha hai.
 */
 export function About() {
   return (
