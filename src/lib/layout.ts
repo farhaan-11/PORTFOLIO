@@ -7,8 +7,10 @@
 // dikhta tha. Isse zyada chauda nahi karna: heading ki line itni lambi ho
 // jaati hai ki aankh wapas aate hue kho jaati hai.
 //
-// Side padding phone pe 24px (px-6) aur desktop pe 40px (md:px-10).
-export const container = "mx-auto w-full max-w-[76rem] px-6 md:px-10";
+// Side padding phone pe 20px (px-5) aur desktop pe 40px (md:px-10).
+// Phone pe 24px se ghataya: 375px screen pe 48px dono taraf chala jata tha,
+// aur headline ki har line ek shabd pehle toot jati thi.
+export const container = "mx-auto w-full max-w-[76rem] px-5 md:px-10";
 
 // Section ke upar-neeche ki jagah. Phone pe kam, desktop pe zyada.
 //
@@ -41,4 +43,6 @@ export const sectionPadding = "py-16 md:py-20";
 // Hero ki apni padding. Upar thodi zyada hawa (header ke neeche page shuru
 // hota hai, wahan tanga hua nahi lagna chahiye) aur neeche kam, taaki About
 // thoda jhaanke — isse reader ko pata chalta hai ki neeche aur bhi kuch hai.
-export const heroPadding = "pt-14 pb-8 md:pt-20 md:pb-12";
+// Phone pe upar ki hawa 56px se 36px ki gayi - 56px pe pehli screen ka
+// aadha hissa khaali rehta tha aur lead poori dikhti hi nahi thi.
+export const heroPadding = "pt-9 pb-8 md:pt-20 md:pb-12";

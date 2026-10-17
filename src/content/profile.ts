@@ -4,16 +4,48 @@
 // Nav bar ke words. Links page ke sections pe jump karte hain — aur ye
 // sections aage ke steps mein banenge, isliye tab tak click karne pe
 // kuch nahi hoga. Ye galti nahi hai, order aisa hi hai.
+// Naam do hisson mein isliye hai ki header ka wordmark do rang use karta hai:
+// pehla naam gehra ink, surname halka ink-soft. Poora naam inhi se banta hai,
+// taaki naam badalna pade to ek hi jagah badlna pade.
+const nameFirst = "Farhan";
+const nameLast = "Ansari";
+
 export const nav = {
-  name: "Farhan Ansari",
+  nameFirst,
+  nameLast,
+  name: `${nameFirst} ${nameLast}`,
 
   // Sirf teen link. Nav sitemap nahi, escape hatch hai — Stack aur
   // Experience beech page mein hain, wahan reader scroll karke pahunchta hai.
+  // Order: Work sabse pehle. Jo banda ye page kholta hai wo kaam dekhne aata
+  // hai, apni kahani nahi padhne — pehle "About" tha, aur usse sabse zaroori
+  // cheez doosre number pe chali jati thi.
+  //
+  // "About" ki jagah "Background": us section mein biography nahi, career hai
+  // (ZUNO, Gautam Solar, Rollix). "About" internet ka sabse khaali shabd hai —
+  // usse padhke kisi ko nahi pata chalta ki andar kya milega.
+  //
+  // Har label ek hi shabd ka hai: "Selected work" jaise do-shabdi label tablet
+  // width pe Resume button se chipakne lagte hain.
+  //
+  // href wahi purane hain (#about) — section ki id badalne se footer ka
+  // "Back to top" aur baaki andar ke link toot jate, aur label badalne ka
+  // isse koi lena-dena nahi hai.
   links: [
-    { label: "About", href: "#about" },
     { label: "Work", href: "#work" },
+    { label: "Background", href: "#about" },
     { label: "Contact", href: "#contact" },
   ],
+
+  // Phone pe upar wali teen link chhup jati hain (jagah nahi hai), isliye
+  // wahan ek hi shortcut dikhta hai. Pehle yahan "Email" tha jo seedha mail
+  // app khol deta tha - banda abhi page dekh hi raha hota hai, aur mail app
+  // ka khulna us waqt sabse bada jhatka hai. Ab ye bas contact section tak
+  // le jata hai, jahan form aur address dono hain.
+  //
+  // Naam "Get in touch" hai, "Contact" nahi: phone pe yahi ek hi link hai,
+  // isliye wo thoda garmjoshi se bula sakta hai.
+  contactShortcut: { label: "Get in touch", href: "#contact" },
 };
 
 export const hero = {
@@ -342,12 +374,25 @@ export const contact = {
   // Resume alag hai: wo nav bar mein hai, yahan nahi. Recruiter resume
   // sabse pehle dhoondhta hai aur footer tak scroll karna uska kaam nahi.
   //
-  // `ready` ek switch hai. Jab tak `public/resume.pdf` maujood nahi hai, ye
-  // `false` rehta hai aur nav mein button dikhta hi nahi — tooti hui resume
-  // link 404 deti hai aur recruiter wapas nahi aata.
+  // `ready` ek switch hai. Isse nav ka resume button on/off hota hai —
+  // tooti hui resume link 404 deti hai aur recruiter wapas nahi aata.
+  //
+  // File site mein nahi, Google Drive pe rakhi hai. Wajah: resume har hafte
+  // badalta hai, aur `public/resume.pdf` hota to har baar poori site dobara
+  // deploy karni padti. Drive pe file badlo, link wahi ka wahi chalta rehta hai.
+  //
+  // Do cheezein Drive pe karni padti hain, warna ye link bekaar ho jata hai:
+  //   1. Sharing "Anyone with the link - Viewer" ho, warna "Request access" dikhta hai.
+  //   2. Naya resume hamesha usi file pe "Manage versions - Upload new version"
+  //      se chadhana hai. Purani file delete karke nayi upload ki to Drive nayi
+  //      ID deta hai aur neeche wala link toot jata hai.
+  //
+  // Link /view wala hai, download wala nahi: recruiter pehle resume padhna
+  // chahta hai, aur download ka button Drive ke viewer mein already hota hai.
+  // URL se ?usp=drive_link hata diya hai - wo sirf Drive ka tracking param hai.
   resume: {
-    ready: false,
-    href: "/resume.pdf",
+    ready: true,
+    href: "https://drive.google.com/file/d/1WKcxvlbuip1cXCwCL9cjOY6FzYIPRmlb/view",
     label: "Resume (PDF)",
   },
 

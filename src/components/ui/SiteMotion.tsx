@@ -114,12 +114,14 @@ export function SiteMotion() {
 
       const context = gsap.context(() => {
         /*
-          HERO — line by line.
+          HERO — akshar dar akshar.
 
-          SplitText headline ko lines mein todta hai aur har line ko ek
-          mask ke peeche rakhta hai (mask: "lines"). Line us mask ke neeche
-          se upar aati hai — fade nahi. Yahi ek move poore page ka tone
-          set karta hai.
+          SplitText headline ko lines AUR chars dono mein todta hai. Mask
+          lines pe hai, aur akshar usi mask ke neeche se upar aate hain —
+          fade nahi. Yahi ek move poore page ka tone set karta hai.
+
+          Pehle poori line ek saath uthti thi. Letter-by-letter 17 Oct 2026
+          ko Farhan ne choose kiya, chaar versions live dekhne ke baad.
         */
         const headline = document.querySelector<HTMLElement>(
           '[data-anim="hero-headline"]',
@@ -160,19 +162,40 @@ export function SiteMotion() {
           */
           let introAdded = false;
 
+          /*
+            type "lines,chars": todta chars mein hai (har akshar alag uthta
+            hai) par mask LINES pe hai, chars pe nahi. Agar mask har akshar
+            pe hota to 'y' aur 'p' ki poonch (descender) kat jaati — har
+            akshar ka apna dabba uski poonch se chhota hota hai.
+
+            Lines ka mask ye kaam saaf karta hai: akshar line ke mask ke
+            neeche se upar aate hain, aur poonch kahin nahi katti.
+          */
           SplitText.create(headline, {
-            type: "lines",
+            type: "lines,chars",
             mask: "lines",
             autoSplit: true,
             onSplit: (split) => {
               if (introAdded) return;
               introAdded = true;
 
-              return gsap.from(split.lines, {
+              /*
+                Letter by letter. Timing jaan-boojh ke kasi hui hai:
+
+                stagger 0.018s — 24 akshar × 0.018 = sirf 0.43s mein saare
+                akshar chal padte hain. 0.05s rakha hota to headline poori
+                hone mein 1.5s lagte aur reader daava padhne se pehle hi
+                intezaar karta.
+
+                duration 0.6s (0.95 nahi) — har akshar ka safar chhota hai,
+                isliye use utna waqt chahiye hi nahi; lamba rakhne se akshar
+                aalsi lagte hain.
+              */
+              return gsap.from(split.chars, {
                 yPercent: 115,
-                duration: 0.95,
+                duration: 0.6,
                 ease: "power4.out",
-                stagger: 0.08,
+                stagger: 0.018,
                 delay: 0.3,
               });
             },
@@ -186,6 +209,63 @@ export function SiteMotion() {
           ease: "power3.out",
           delay: 0.7,
         });
+
+        /*
+          HERO ka phrase — highlighter aur likhai, ek hi harkat.
+
+          Do tween saath chalte hain: highlight ki chaudai 0 se 100% hoti hai,
+          aur usi raftaar se akshar ek-ek karke dikhte hain. Aankh ko lagta hai
+          ki marker aage chal raha hai aur uske peeche se shabd nikal rahe hain.
+
+          Dono ki raftaar barabar rakhi gayi hai: 29 akshar × 0.012s = 0.35s,
+          plus har akshar ka apna 0.25s — yaani dono lagbhag 0.6s mein poore.
+          Agar stagger bada kar diya to marker shabdon se aage nikal jayega aur
+          jod toot jayega.
+
+          delay 1.05s: lead 0.7s pe aana shuru karti hai aur ~1.4s pe thamti
+          hai. Phrase usi beech aata hai — jaan-boojh ke. Poori lead ke rukne
+          ka intezaar karte to padhne wala ek baithe hue vaakya mein ek khaali
+          jagah dekhta, aur wo animation nahi, bug lagta hai.
+
+          Yahan clip-path nahi hai: phone pe ye phrase do line mein toot sakta
+          hai, aur clip ek hi chaukor kaatata hai — doosri line adhoori reh
+          jati. Akshar inline hain, isliye wo line ke saath khud beh jate hain.
+        */
+        const phrase = document.querySelector<HTMLElement>(
+          '[data-anim="hero-phrase"]',
+        );
+
+        if (phrase) {
+          gsap.from(phrase, {
+            backgroundSize: "0% 100%",
+            duration: 0.6,
+            ease: "power2.inOut",
+            delay: 1.05,
+          });
+
+          /*
+            type "words,chars", sirf "chars" nahi.
+
+            Sirf chars se har akshar apna alag inline-block dabba ban jata hai,
+            aur line kisi bhi DO AKSHARON ke beech se toot sakti hai - phone pe
+            "syllabus" bilkul beech se toot ke "syllabu" aur "s" ban gaya tha.
+
+            Words jodne se har shabd ek dabba ban jata hai aur akshar us dabbe
+            ke andar rehte hain, isliye shabd sabut rehta hai aur line sirf
+            shabdon ke beech se tootti hai - jaise normal text mein hoti hai.
+          */
+          SplitText.create(phrase, {
+            type: "words,chars",
+            onSplit: (split) =>
+              gsap.from(split.chars, {
+                opacity: 0,
+                duration: 0.25,
+                ease: "none",
+                stagger: 0.012,
+                delay: 1.1,
+              }),
+          });
+        }
 
         /*
           HAIRLINE — har rule baayen se daayen banti hai.
