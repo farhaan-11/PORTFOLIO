@@ -1,7 +1,6 @@
 import { knownGaps, resumeOnlyFacts } from "@/content/ask";
 import {
   about,
-  aboutAvailability,
   contact,
   experience,
   hero,
@@ -46,10 +45,15 @@ export function buildKnowledge() {
       `Email: ${contact.email}`,
     ]),
 
-    section(
-      "About, in his own words",
-      [...about, aboutAvailability].map((paragraph) => `- ${paragraph}`),
-    ),
+    // About ab paragraph ki list nahi, labelled blocks hai. Panel ko label ke
+    // saath dena behtar hai: "Now:", "The hard part:" khud bata dete hain ki
+    // kaunsi baat kis waqt ki hai, isliye model tareekhein jodna band kar deta hai.
+    section("About, in his own words", [
+      `- ${about.lede}`,
+      ...[...about.story, ...about.side, about.closing].map(
+        (block) => `- ${block.label}: ${block.text}`,
+      ),
+    ]),
 
     section(
       "Measured numbers (with the project each one belongs to)",

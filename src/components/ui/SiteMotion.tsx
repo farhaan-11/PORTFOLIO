@@ -296,6 +296,47 @@ export function SiteMotion() {
           });
 
         /*
+          BEAT — ek section, ek trigger, do kadam.
+
+          Upar wala `rise` har band ko uska APNA ScrollTrigger deta hai, isliye
+          do band ke beech ka faasla scroll ki raftaar pe nirbhar karta hai:
+          tez scroll pe teeno ek saath aa jate hain, aur dheere scroll pe
+          doosra band bahut der baad. Jahan tarteeb khud matlab rakhti hai —
+          pehle daava, phir uska saboot — wahan ye faasla tay hona chahiye,
+          scroll ke bharose nahi.
+
+          Isliye yahan ek hi trigger hai aur ek timeline: `lead` pehle,
+          `rest` theek 0.18s baad. Filhaal sirf About ise use karta hai.
+
+          Blocks ko ek-ek karke stagger karne ka option bhi tha, par wo neeche
+          wale ROWS jaisa hi dikhta — aur Work bilkul About ke neeche hai.
+          Do section ek hi harkat karein to dono list jaise padhne lagte hain.
+        */
+        gsap.utils.toArray<HTMLElement>("[data-anim-beat]").forEach((beat) => {
+          const lead = beat.querySelector<HTMLElement>('[data-beat="lead"]');
+          const rest = beat.querySelectorAll<HTMLElement>('[data-beat="rest"]');
+
+          if (!lead || rest.length === 0) return;
+
+          const timeline = gsap.timeline({
+            scrollTrigger: { trigger: beat, start: "top 88%", once: true },
+          });
+
+          timeline.from(lead, {
+            y: 18,
+            opacity: 0,
+            duration: 0.65,
+            ease: "power3.out",
+          });
+
+          timeline.from(
+            rest,
+            { y: 18, opacity: 0, duration: 0.65, ease: "power3.out" },
+            0.18,
+          );
+        });
+
+        /*
           ROWS — fade nahi, wipe.
           Row apne hi upar wale kinare se khulti hai (clip-path), jaise
           list upar se neeche likhi ja rahi ho.

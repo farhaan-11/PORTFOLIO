@@ -127,6 +127,16 @@
   --text-hero-lead: clamp(1.03rem, 1.3vw, 1.375rem);
   --text-hero-lead--line-height: 1.55;
 
+  /*
+    Ek bada vaakya jo paragraph nahi hai — abhi sirf About ka lede.
+    18px body se 26px pe jaane ka matlab hai ki reader ko ek jagah rukna hai
+    aur ek baat yaad rakhni hai. Phone pe 20px: usse upar le jaane pe wo
+    headline jaisa lagne lagta hai aur section ka asli heading dab jata hai.
+  */
+  --text-statement: clamp(1.25rem, 1.9vw, 1.625rem);
+  --text-statement--line-height: 1.32;
+  --text-statement--letter-spacing: -0.005em;
+
   /* Chhote mono labels: SELECTED WORK, 01, 02 */
   --text-label: 0.75rem;
   --text-label--line-height: 1;

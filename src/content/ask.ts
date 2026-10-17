@@ -264,8 +264,13 @@ export const fallbackAnswers = [
       "notice",
       "open to",
     ],
+    // 17 Oct 2026: daayra chauda hua. Pehle yahan sirf "full-stack and frontend
+    // roles where AI is part of the product" tha — wo About ke naye "Open to"
+    // block se alag baat bolne laga tha, aur panel ka page se alag bolna sabse
+    // bura failure hai. "AI engineer nahi" wali line yahan hi rehni chahiye:
+    // panel se log yahi sawaal seedha poochte hain.
     answer:
-      "Open to full-stack and frontend roles where AI is part of the product, rather than 'AI engineer' roles — he builds products around models, he does not train them. Based in Hyderabad, and open to relocation. Email is farhanraza2239@gmail.com, which is also in the contact section at the bottom of this page with a copy button.",
+      "Open to full-stack roles, and to backend or frontend roles on their own. AI being part of the product is a plus, not a requirement — and he is not looking for 'AI engineer' roles, because he builds products around models, he does not train them. Based in Hyderabad, and open to relocation. Email is farhanraza2239@gmail.com, which is also in the contact section at the bottom of this page with a copy button.",
   },
 ];
 

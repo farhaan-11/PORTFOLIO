@@ -310,34 +310,134 @@ export const stack = [
 // About — poore page ki ek jagah jahan reader Farhan ko sunta hai, uske kaam ko nahi.
 // Isme koi tareekh ya "last month" nahi likhna — content purana pad jata hai
 // aur usey update karne koi wapas nahi aata.
-// Teen paragraph, teen alag kaam: kya hoon → kya banaya → pehle kya kiya.
-// Koi personal kahani nahi, koi "I care deeply about..." nahi — wo har
-// portfolio mein hai, isliye wo kuch batata hi nahi.
-export const about = [
-  // Doosra hissa character line hai. Wo kisi se tulna nahi karta
-  // ("course se nahi seekha" jaisa) — tulna karte hi reader ke dimaag mein
-  // wahi shak aa jata hai jo kisi ne uthaya hi nahi tha.
-  "I build full-stack applications in React and Node.js — software that has to keep running after I ship it.",
+//
+// 17 Oct 2026 ko ye poora section dobara likha gaya, aur wajah layout nahi thi —
+// DOHRAAV thi. Purani nau baaton mein se saat page pe pehle se maujood thi:
+// "9-intent classifier" Work row 01 mein hai, "200+ daily users, dispatch and
+// delivery" Work row 03 mein wahi number ke saath hai, aur Rollix wali line
+// Work row 02 mein lagbhag wahi shabdon mein likhi hai — aur wo row isi ke
+// thodi hi neeche hai. Section flat isliye nahi lagta tha ki font chhota tha;
+// flat isliye lagta tha ki ismein koi nayi jaankari hi nahi thi.
+//
+// Ab iska ek hi kaam hai: hero ka daava ("The model was the easy part") sach
+// karna, reader ke Work ki list tak pahunchne se pehle. Jo baat Work, Stack ya
+// Contact pehle se bol raha hai, wo yahan se nikal di gayi hai.
+//
+// Dhancha do hisson ka hai: `story` wo hai jo PADHA jata hai, `side` wo hai jo
+// JAANA jata hai. Component dono ko alag size deta hai, aur phone pe side ko
+// ek kase hue group mein daal deta hai.
+//
+// `closing` in dono se bahar hai: wo section ki maang hai, jaankari nahi.
+// Isliye wo dono column ke NEECHE poori chaudai pe baithta hai — pehle wo
+// side ka teesra block tha, aur wahan do dikkatein thi: daayan column
+// baayen se kaafi lamba ho jata tha, aur section ki sabse zaroori baat
+// ek sidebar ki poonch ban ke reh jati thi.
+type AboutBlock = {
+  label: string;
+  text: string;
+};
 
-  // Python yahan hai, pehle paragraph mein nahi: Stack section Python ko
-  // "Learning now" mein rakhta hai, aur ek hi page do alag baatein nahi keh sakta.
-  // "Dockerised ... through GitHub Actions" — deploy khud Dockerised nahi hota,
-  // app hoti hai; isliye "Dockerised deploy" ki jagah ye lamba lekin sahi phrase hai.
-  // Teeno cheezein repo mein verify ki gayi hain (Dockerfile ×2, compose, deploy-ec2.yml).
-  // Ye line ek hi baat kehti hai: poora infra akele banda chala raha hai.
-  "Since August 2025 I've been building ZUNO on my own — the retrieval pipeline, a 9-intent classifier, auth and sessions on Redis, rate limiting, and a Dockerised deploy to EC2 through GitHub Actions. Its retrieval layer is moving to Python now.",
+export const about: {
+  lede: string;
+  story: AboutBlock[];
+  side: AboutBlock[];
+  closing: {
+    label: string;
+    text: string;
+    href: string;
+    linkLabel: string;
+  };
+} = {
+  // Pehla vaakya. "React and Node.js" yahan se hata diya gaya — poori list
+  // Stack section mein hai. Jo bacha hai wahi is line ka asli kaam hai, aur
+  // wo baat page pe aur kahin nahi likhi.
+  lede: "I build full-stack applications — the kind that has to keep running after I ship it.",
 
-  // Gautam Solar aur Rollix ko apna paragraph: pehle ye ZUNO wale paragraph
-  // ki poonch the aur dikhte hi nahi the.
-  "Before that: logistics at Gautam Solar — dashboards for 200+ daily users, and the dispatch and delivery modules. Then Rollix, where I was the only developer on payments — Razorpay checkout, deposit API, INR/USD conversion.",
-];
+  story: [
+    {
+      label: "Now",
+      // "I went through that system myself" us ek sawaal ka jawab hai jo poora
+      // page nahi deta: ye project banaya hi kyun. Ye upar wale "koi personal
+      // kahani nahi" rule ka jaan-boojh ke liya gaya apvaad hai, aur isiliye
+      // ek hi vaakya hai — ek line wajah batati hai, paragraph bhavuk kar deta hai.
+      text: "ZUNO is a study tutor for Bihar Board Class 10 Hindi-medium students — I went through that system myself. Mine alone since August 2025: retrieval, auth, deploy.",
+    },
+    {
+      label: "The hard part",
+      // Page ka sabse mazboot hissa, aur ye number andaaza nahi hai: ZUNO repo
+      // ke HINGLISH_QUERY_FIX_PLAN.md mein 10 asli student queries ka before/after
+      // table hai (raw Hinglish 0 chunks on 10/10, English translation 5 on 10/10),
+      // aur usi ke neeche wo counter hai jo batata hai ki 50 candidates vector
+      // floor paar karke final filter pe mar gaye.
+      //
+      // Aakhri vaakya chhodna nahi hai: wahi positioning ko "AI engineer" ki
+      // taraf jaane se rokta hai. Problem retrieval ki thi, model ki nahi.
+      text: "Not the model. Students type Hinglish. Ten real Hinglish questions returned zero passages; the same ten in English returned five each. My own score filter was killing all fifty candidates. That was retrieval work, not AI work.",
+    },
+  ],
 
-// Ye biography nahi hai — ye maang hai. Isliye alag rakha hai, aur component
-// ise hairline ke neeche thoda bhaari font mein dikhata hai.
-// Rollix ka duration jaan-boojh ke kahin nahi likha: resume "May–Aug 2025"
-// kehta hai, isliye jab tak wo saaf na ho, number dena galat hoga.
-export const aboutAvailability =
-  "Open to full-stack and frontend roles where AI is part of the product. Based in Hyderabad.";
+  side: [
+    {
+      label: "Before",
+      // Yahan kaam ki detail nahi hai — wo Work rows ka kaam hai (25+ modules,
+      // GPS tracking, Razorpay, withdrawal flow — sab wahan likha hai).
+      //
+      // Kitna experience hai aur kab se — dono yahan se nikal gaye. Tareekh
+      // waise bhi har Work row ke saath mono line mein likhi hai, aur saal
+      // ginwana kaam ke baare mein kuch nahi batata.
+      //
+      // Uski jagah "both ends of both" hai, aur ye is section mein sabse
+      // zaroori kaam karta hai: lede full-stack ka daava karti hai, par uske
+      // neeche Now aur The hard part DONO ZUNO ki hi baat karte hain. Before
+      // hi ek jagah hai jahan ye dikh sakta hai ki wo daava sirf ek project
+      // pe nahi tika. Shabd resume se hain — Gautam Solar mein "built the
+      // frontend and backend", Rollix mein deposit API jo wallet UI se juda tha.
+      text: "Logistics dashboards at Gautam Solar, then payments at Rollix. Both ends of both — the screens people worked in, and the APIs underneath them.",
+    },
+    {
+      // Label "Next" nahi hai: ye kaam ho raha hai, hone wala nahi. Aur
+      // "Current" isliye nahi ki baayen column ka pehla label pehle se "Now"
+      // hai — ek hi section mein do label ek baat kehne lagte.
+      label: "In progress",
+      // Ye poora plan ZUNO ke PHASE1_PYTHON_RAG_ROADMAP.md se hai, andaaza
+      // nahi: embed + $vectorSearch + reranker + final filter Node se nikal ke
+      // FastAPI pe jaa rahe hain, port 8000 pe, dono ke beech X-Internal-Key
+      // header. Auth, cache aur indexing Node mein hi rahenge.
+      //
+      // "Python because the reranker runs on raw vector scores" — wahi wajah
+      // us file mein likhi hai (LangChain ka retriever raw score aur metadata
+      // chhupa deta hai, aur reranker ko wahi chahiye). Ye clause isliye hai
+      // ki "Python kyun?" interview ka pehla sawaal hota hai.
+      //
+      // Purani line ("one of its three caches has a 0% hit rate — I know, it is
+      // written down, and it is next") hata di gayi: wo imaandar to thi, par
+      // kuch kehti nahi thi. Ye bug BACKLOG ka hai, portfolio ka nahi.
+      text: "Moving ZUNO's retrieval out of Node into a Python service of its own — FastAPI on its own port, an internal key between them. Python because the reranker runs on raw vector scores, and a service of its own because one app is becoming several.",
+    },
+  ],
+
+  // Section ka aakhri band — dono column ke neeche, poori chaudai pe, beech mein.
+  //
+  // Poore page pe sab kuch left-aligned hai, aur ye akela hissa center mein hai.
+  // Ye jaan-boojh ke hai: center tabhi kaam karta hai jab wo ek hi baar aaye
+  // aur chhota ho. Yahan wo "ab yahan ruko" ka kaam karta hai, aur reader ko
+  // section se Contact tak ka raasta deta hai.
+  closing: {
+    label: "Open to",
+    // 17 Oct 2026 ko Farhan ne daayra chauda kiya: sirf "full-stack jahan AI
+    // ho" nahi, balki full-stack, backend aur frontend teeno. AI ab shart
+    // nahi, ek plus hai. Core rule wahi hai — "AI Engineer" kabhi nahi
+    // likhna, kyunki wo interview ke pehle sawaal pe toot jata hai.
+    //
+    // Sheher aur relocation yahan se hata diye: wo Contact ka kaam hai,
+    // aur wahan "Hyderabad, India" aur "Open to relocation" dono pehle se hain.
+    text: "Full-stack roles, and backend or frontend on their own. AI being part of the product is a plus.",
+    href: "#contact",
+    // Label "Get in touch" hai, "Contact" nahi — wahi shabd jo phone ke nav
+    // mein hai. Ek hi cheez ko do naam dena reader ko ruka deta hai.
+    linkLabel: "Get in touch",
+  },
+};
 
 // Contact — page ka aakhri section.
 //
