@@ -9,6 +9,24 @@ import {
   readVisitorId,
 } from "@/lib/contact-limits";
 
+/*
+  `export const runtime` yahan JAAN-BOOJH KE nahi hai: next.config.ts mein
+  cacheComponents on hai, aur uske saath Next runtime export allow hi nahi
+  karta (build fail ho jata hai). Zaroorat bhi nahi — us setting ke saath
+  route handler hamesha nodejs pe chalta hai, aur nodemailer ko wahi chahiye
+  (wo Node ke `net`/`tls` sockets pe chalta hai, jo Edge mein hote hi nahi).
+
+  Matlab: Edge pe bhejne ki koshish mat karna, mail chupchaap band ho jayega.
+*/
+
+/*
+  Gmail ka SMTP handshake 2-5 second le sakta hai (Vercel ke thande function
+  pe thoda zyada). Vercel ka default 15 second hai, aur usme handshake kabhi
+  beech mein kat jata hai — visitor ko "couldn't send it" dikhta hai jabki
+  kuch toota nahi tha. 30 second dene se wo race khatam ho jati hai.
+*/
+export const maxDuration = 30;
+
 function jsonResponse(body: object, status: number) {
   return new Response(JSON.stringify(body), {
     status,

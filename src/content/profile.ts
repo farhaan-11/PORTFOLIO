@@ -99,7 +99,7 @@ export const work: WorkEntry[] = [
     period: "Aug 2025 — present",
     link: "https://learnzuno.in",
     linkLabel: "learnzuno.in",
-    caseStudy: null,
+    caseStudy: "/work/zuno",
     stack: [
       "React",
       "Node.js",

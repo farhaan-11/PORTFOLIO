@@ -16,6 +16,9 @@ export const metadata: Metadata = {
   title: "ZUNO",
   description:
     "How ZUNO answers Class 10 Science questions from 16 indexed chapters — and refuses by name when the answer isn't in them.",
+  alternates: {
+    canonical: "/work/zuno",
+  },
 };
 
 /*

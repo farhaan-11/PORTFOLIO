@@ -11,6 +11,21 @@ import { container, sectionPadding } from "@/lib/layout";
   image icon kabhi nahi dikhta (wo sabse sasta failure hai).
 */
 export function CaseStudyScreenshots() {
+  /*
+    Jab tak ek bhi screenshot nahi aaya, poora section hi nahi dikhta.
+
+    Pehle yahan teen khaali frame "Screenshot coming" likh ke dikhte the. Wo
+    ek adhoora page hone ka ailaan tha — aur page ka asli daava imaandari ka
+    hai, isliye wo sabse mehnga placeholder tha. Ek bhi screenshot aate hi
+    section wapas aa jata hai, aur jiska src null hai uski jagah frame dikhta
+    hai (toota hua image icon kabhi nahi).
+  */
+  const hasAnyScreenshot = screenshots.some((shot) => shot.src !== null);
+
+  if (!hasAnyScreenshot) {
+    return null;
+  }
+
   return (
     <section className={`${container} ${sectionPadding}`}>
       <h2 className="text-label text-ink-soft font-mono uppercase">
