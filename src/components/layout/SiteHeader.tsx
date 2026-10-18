@@ -2,19 +2,7 @@ import Link from "next/link";
 import { contact, nav } from "@/content/profile";
 import { container } from "@/lib/layout";
 
-/*
-  Hover pe shabd "roll" karta hai: shabd do baar likha hai, ek doosre ke
-  neeche. Bahar ka dabba overflow-hidden hai aur theek ek line ooncha
-  (h-[1.3em] + leading-[1.3]), isliye sirf pehla shabd dikhta hai. Hover pe
-  andar wala wrapper aadha upar khisakta hai — aadha = theek ek line, kyunki
-  andar do hi line hain. Isi wajah se koi fix pixel nahi hai.
 
-  Doosri copy aria-hidden hai, warna screen reader naam do baar bolta.
-  Motion band ho to na roll chalta hai na sheen.
-
-  Ye nav links aur Resume dono use karte hain, isliye alag function hai —
-  wahi das line ka nested markup do jagah likhna padta tha.
-*/
 function RollingLabel({ label }: { label: string }) {
   return (
     <span className="relative inline-block h-[1.3em] overflow-hidden align-bottom leading-[1.3]">
