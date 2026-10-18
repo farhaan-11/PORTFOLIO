@@ -2,29 +2,21 @@ import type { Metadata, Viewport } from "next";
 import { bodyFont, headingFont, monoFont } from "./fonts";
 import "./globals.css";
 
+// "AI engineer" jaan-boojh ke nahi likha — Farhan models ke aas-paas product
+// banata hai, models train nahi karta. (DECISIONS.md section 7)
 export const metadata: Metadata = {
   title: {
-    default: "Farhan Ansari — Software Engineer",
-
+    default: "Farhan Ansari — Full-stack engineer",
     template: "%s · Farhan Ansari",
   },
   description:
-    "Software engineer building AI products that answer from real material instead of guessing.",
+    "Full-stack engineer in Hyderabad, India. I build products that have to keep running after I ship them — most recently ZUNO, a tutor that answers only from a Class 10 syllabus.",
 };
 
 export const viewport: Viewport = {
   colorScheme: "light",
 };
 
-/*
-  Pehle yahan ek chhota script tha jo <html> pe "js" class lagata tha —
-  purana CSS reveal usi class ke bharose content chhupata tha.
-
-  Ab wo system nahi raha (animation GSAP karta hai, SiteMotion.tsx), aur
-  wo script ek asli problem bhi thi: server ka HTML aur browser ka HTML
-  alag ho jate the, jisse React har page load pe hydration mismatch ki
-  error deta tha. Script hat gayi, error bhi.
-*/
 export default function RootLayout({
   children,
 }: {

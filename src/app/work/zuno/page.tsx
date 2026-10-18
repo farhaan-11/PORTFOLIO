@@ -11,12 +11,20 @@ import { ContactFooter } from "@/components/sections/ContactFooter";
 import { SiteMotion } from "@/components/ui/SiteMotion";
 import { container } from "@/lib/layout";
 
+// Title sirf "ZUNO" hai — layout.tsx ka template isme "· Farhan Ansari" jod deta hai.
 export const metadata: Metadata = {
   title: "ZUNO",
   description:
     "How ZUNO answers Class 10 Science questions from 16 indexed chapters — and refuses by name when the answer isn't in them.",
 };
 
+/*
+  Section ka order: kya hai → kya mushkil tha → kaise kaam karta hai →
+  chaar mushkil faisle → kya badalta → kaisa dikhta hai.
+
+  `nested` SiteHeader ko batata hai ki ye andar ka page hai — wordmark wapas
+  jaane wala link ban jata hai aur section ke link `/` se shuru hote hain.
+*/
 export default function ZunoCaseStudy() {
   return (
     <>

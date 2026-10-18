@@ -2,29 +2,38 @@ import { SectionHeading } from "@/components/ui/SectionHeading";
 import { about } from "@/content/profile";
 import { container, sectionPadding } from "@/lib/layout";
 
+const labelClass =
+  "font-mono leading-none tracking-[0.08em] uppercase text-ink-soft";
 
-const labelBase = "font-mono leading-none tracking-[0.08em] uppercase text-ink-soft";
+/*
+  Background — ek jagah jahan reader kaam ko nahi, bande ko sunta hai.
 
+  Do column: `story` padha jata hai (bada size, baayen), `side` jaana jata hai
+  (chhota, daayen). `closing` dono ke NEECHE poori chaudai pe hai, kyunki wo
+  jaankari nahi, section ki maang hai. (DECISIONS.md section 7)
+*/
 export function About() {
   return (
     <section id="about" className={`${container} ${sectionPadding}`}>
-     
       <SectionHeading number="01">Background</SectionHeading>
 
+      {/* data-anim-beat: ek trigger, do kadam — lead pehle, baaki 0.18s baad */}
       <div data-anim-beat>
         {/*
-          Lede ki max-width 30rem hai, 62ch nahi: 26px pe 62ch ki line 900px ki
-          ho jati hai aur ye vaakya ek nazar mein padhne wala hona chahiye,
-          paragraph ki tarah nahi.
+          30rem, 62ch nahi: 26px pe 62ch ki line 900px ki ho jati hai, aur ye
+          vaakya ek nazar mein padhne wala hona chahiye.
         */}
-        <p data-beat="lead" className="text-statement mt-7 max-w-[30rem] md:mt-9">
+        <p
+          data-beat="lead"
+          className="text-statement mt-7 max-w-[30rem] md:mt-9"
+        >
           {about.lede}
         </p>
 
         {/*
-          40rem (640px) story ka measure hai aur 19rem (304px) side ka.
-          justify-between dono ke beech ki bachi hui jagah baant deta hai, isliye
-          side hamesha daayen kinare pe baithti hai — chahe screen 1280 ho ya 1920.
+          40rem story ka measure hai aur 19rem side ka. justify-between beech
+          ki bachi jagah baant deta hai, isliye side hamesha daayen kinare pe
+          baithti hai — chahe screen 1280 ho ya 1920.
         */}
         <div className="mt-9 md:mt-12 md:grid md:grid-cols-[minmax(0,40rem)_19rem] md:justify-between md:gap-16">
           <div data-beat="rest" className="grid content-start gap-5 md:gap-7">
@@ -33,7 +42,7 @@ export function About() {
                 key={block.label}
                 className="border-line border-t pt-4 md:pt-[1.125rem]"
               >
-                <p className={`${labelBase} mb-2.5 text-[11px] md:text-label`}>
+                <p className={`${labelClass} md:text-label mb-2.5 text-[11px]`}>
                   {block.label}
                 </p>
 
@@ -45,9 +54,9 @@ export function About() {
           </div>
 
           {/*
-            Phone pe hairline poore group ke upar hai (border-t yahan), desktop pe
-            har block ke upar (border-t neeche, md: pe). Isi ek farak se phone ka
-            "do awaaz" wala rhythm banta hai.
+            Phone pe hairline poore group ke upar (border-t yahan), desktop pe
+            har block ke upar (border-t neeche, md: pe). Isi ek farak se phone
+            ka "do awaaz" wala rhythm banta hai.
           */}
           <div
             data-beat="rest"
@@ -59,7 +68,7 @@ export function About() {
                 className="md:border-line md:border-t md:pt-[1.125rem]"
               >
                 <p
-                  className={`${labelBase} mb-1.5 text-[10px] md:mb-2.5 md:text-label`}
+                  className={`${labelClass} md:text-label mb-1.5 text-[10px] md:mb-2.5`}
                 >
                   {block.label}
                 </p>
@@ -73,50 +82,42 @@ export function About() {
         </div>
 
         {/*
-          max-w-[46ch] text ko do saaf line mein todta hai. Iske bina ek
-          center-aligned line 1136px lambi ho jati hai, aur center ka poora
-          fayda khatam — aankh ko har line ke shuru mein naya point dhoondhna
-          padta hai.
+          Poore page pe ye akela center-aligned hissa hai. Center tabhi kaam
+          karta hai jab wo ek hi baar aaye aur chhota ho — yahan wo "ab yahan
+          ruko" ka kaam karta hai aur Contact tak raasta deta hai.
         */}
         <div
           data-beat="rest"
           className="border-line mt-10 border-t pt-7 text-center md:mt-14 md:pt-9"
         >
           {/*
-            Teeno cheez ek hi line mein: label, baat, aur link — isi tarteeb se.
-            flex-wrap isliye hai ki phone pe ek line mein ye aa hi nahi sakti;
-            wahan ye apne aap teen line ban jati hai aur center rehti hai.
+            Teeno cheez ek hi line mein: label, baat, link — isi tarteeb se.
+            flex-wrap isliye ki phone pe ye ek line mein aa hi nahi sakti.
 
             items-baseline, items-center nahi: teeno ka font size alag hai
-            (12px mono, 17px sans, 12px mono) aur center karne pe chhote
-            label thode uthe hue dikhte hain. Baseline pe teeno ek hi
-            zameen pe baithte hain.
-
-            Desktop pe text 17px hai, 18px nahi — 18px pe poori line 1136px
-            se nikal jati thi aur wrap ho jati, jo iss badlav ka poora matlab
-            hi khatam kar deti.
+            (12px mono, 17px sans, 12px mono) aur center karne pe chhote label
+            thode uthe hue dikhte hain.
           */}
           <div className="flex flex-wrap items-baseline justify-center gap-x-4 gap-y-3">
-            <p className={`${labelBase} text-[10px] md:text-label`}>
+            <p className={`${labelClass} md:text-label text-[10px]`}>
               {about.closing.label}
             </p>
 
+            {/* 17px, 18px nahi — 18px pe poori line container se nikal ke wrap
+                ho jati thi, aur ek hi line mein rakhne ka matlab khatam. */}
             <p className="max-w-[46ch] text-[1.0625rem] leading-[1.5] font-medium md:max-w-none md:leading-[1.55]">
               {about.closing.text}
             </p>
 
-            {/*
-              Teer hover pe thoda aage sarakta hai. Ye ek hi harkat hai, isliye
-              dikhti hai — do-teen cheezein ek saath hilein to kuch nahi dikhta.
-            */}
             <a
               href={about.closing.href}
-              className="group text-accent inline-flex items-center gap-1.5 font-mono text-[11px] leading-none tracking-[0.08em] whitespace-nowrap uppercase md:text-label"
+              className="group text-accent md:text-label inline-flex items-center gap-1.5 font-mono text-[11px] leading-none tracking-[0.08em] whitespace-nowrap uppercase"
             >
               <span className="underline-offset-4 group-hover:underline">
                 {about.closing.linkLabel}
               </span>
 
+              {/* Hover pe sirf teer sarakta hai — ek hi harkat, isliye dikhti hai */}
               <span
                 aria-hidden="true"
                 className="transition-transform duration-200 group-hover:translate-x-0.5"

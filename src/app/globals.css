@@ -1,90 +1,39 @@
 @import "tailwindcss";
-@import "tw-animate-css";
 
 /*
-  Design A — "Index"
+  Design A — "Index", visual direction "Broadsheet".
 
-  Saare colors sirf yahan. Kisi bhi component mein hex code nahi likhna.
-  Yahan ek value badlo, poori site badal jayegi.
+  Saare color sirf yahan. Kisi component mein hex code nahi likhna.
+
+  RULE: ek nazar mein accent ka ek hi matlab hoga. Accent sirf teen jagah hai
+  (section number, link, hero ka ek phrase) aur teeno kabhi ek saath aankh
+  mein nahi aate. Poori wajah DECISIONS.md section 1 mein hai — accent kahin
+  lagane se pehle wo padhna hai.
 */
 @theme {
-  /* Page ka background. Pure white nahi — woh screen pe chubhta hai.
-     Pehle #fbfaf8 (halka warm) tha; ab thoda thanda off-white, taaki
-     serif heading ka kaala aur green accent dono saaf baithein. */
+  /* Pure white nahi — woh screen pe chubhta hai */
   --color-paper: #f8f8f5;
 
-  /* Thoda gehra paper. Contact band aur row hover ke liye */
+  /* Thoda gehra paper. Contact band ke liye */
   --color-paper-2: #efefe9;
 
-  /* Main text. Pure black nahi — woh paper pe bhaari lagta hai */
+  /* Pure black nahi — woh paper pe bhaari lagta hai */
   --color-ink: #16161a;
 
-  /* Halka text: labels, dates, stack line, meta */
+  /* Labels, dates, stack line, meta */
   --color-ink-soft: #6c6c70;
 
-  /*
-    Ink-soft se ek kadam halka. Sirf un lineon ke liye jo content nahi, note hain.
-
-    Abhi iska ek hi kaam hai: work row ka "Private product". Wo line stack
-    line ke theek neeche baithti hai, aur dono ink-soft mein hone se barabar
-    padhti thi — jaise "Private product" bhi stack ka hissa ho. Ek kadam
-    halka karne se wo jawab ban jati hai ("link kyun nahi hai"), daava nahi.
-
-    Isse zyada jagah use na karna. Jo text isse halka hoga wo paper pe
-    padhna band ho jata hai — contrast yahin farsh pe hai.
-  */
+  /* Sirf wo linein jo content nahi, note hain. Isse zyada jagah use na
+     karna — jo text isse halka hoga wo paper pe padhna band ho jata hai. */
   --color-ink-faint: #a2a2a0;
 
   /* Hairline. Sirf divider aur border — editorial layout isi se banta hai */
   --color-line: #e0e0da;
 
-  /*
-    Accent — poore page ka ek hi rang.
-
-    RULE, aur accent kahin lagane se pehle yahi padhna hai:
-    EK NAZAR MEIN ACCENT KA EK HI MATLAB HOGA.
-
-    16 Oct 2026 tak ye rule toot chuka tha. Homepage pe 12 cheezein accent
-    mein thi — 3 section number, 4 work row number, 2 live link, "Learning
-    now" row, hero ka phrase, aur scroll progress line. Unme se sirf 2 click
-    hoti thi. Matlab ek rang ke chaar matlab ban gaye the: "ye number hai",
-    "ye daava hai", "ye click hota hai", "ye abhi aata nahi hai". Jis rang ke
-    chaar matlab hon, reader usey seekh hi nahi sakta — aur jo rang kuch na
-    sikhaye, wo sirf sajavat hai.
-
-    Ab accent sirf teen jagah hai, aur teeno kabhi ek saath aankh mein nahi
-    aate:
-
-      1. Section ka number — SectionHeading. Matlab: "yahan naya hissa shuru
-         hua". Do section number ke beech 160px ka faasla hai, isliye ye ek
-         saath dikhte hi nahi aur ek doosre ko kamzor nahi karte.
-
-      2. Link — work row ka live link, aur har hover state. Matlab: "yahan
-         click hota hai".
-
-      3. Hero ka ek phrase. Poore page ka ek asli daava, aur bas ek.
-
-    Jo accent mein JAAN-BOOJH KE nahi hai:
-
-      - Work row ke number (01-04). Ye ek hi nazar mein link ke saath aate
-        the — chaar number plus do link, ek screen mein. Yahi asli dilution
-        tha. Ab ye ink-soft mein hain; unka kaam position se hota hai, rang
-        se nahi.
-
-      - "Learning now" wali Stack row. Accent "yahan dekho" ka rang hai, aur
-        usey page ki sabse kamzor row pe lagana ulta kaam karta hai.
-
-    Rang khud: cobalt blue se deep green pe badla gaya. Blue har tech
-    portfolio ka default hai, aur bade serif heading ke saath thanda lagta
-    tha. Token ka naam bhi isi liye badla — use `cobalt` kehna ab jhooth hota.
-  */
   --color-accent: #0e6e4f;
 }
 
-/*
-  Fonts. Asli font files fonts.ts mein load hote hain --
-  yahan sirf unhe naam diye ja rahe hain.
-*/
+/* Asli font files fonts.ts mein load hote hain — yahan sirf naam diye ja rahe hain */
 @theme {
   --font-heading: var(--font-instrument-serif), ui-serif, Georgia, serif;
   --font-body: var(--font-instrument-sans), ui-sans-serif, sans-serif;
@@ -92,60 +41,38 @@
 }
 
 /*
-  Type scale. Size yahan fix hai taaki har section mein alag-alag
-  size na choose karna pade.
+  Type scale. Size yahan fix hai taaki har section mein alag-alag size choose
+  na karna pade. clamp(sabse chhota, screen ke hisaab se, sabse bada) — isse
+  phone pe heading apne aap chhoti ho jaati hai, bina alag mobile class likhe.
 
-  clamp(sabse chhota, screen ke hisaab se, sabse bada) --
-  isse phone pe heading apne aap chhoti ho jaati hai, bina
-  alag mobile class likhe.
+  Har size ki wajah DECISIONS.md section 3 mein hai.
 */
 @theme {
-  /* Hero ki badi headline.
-
-     Phone wali value 2.5rem (40px) se 2.125rem (34px) ki gayi. 40px pe
-     headline aur uske neeche wali lead ke beech sirf 2.1x ka farak bachta
-     tha - phone pe dono lagbhag ek jaisi badi lagti thi aur daava apna zor
-     kho deta tha. Desktop ki value (4.125rem) waisi ki waisi hai. */
+  /* Hero ki badi headline */
   --text-display: clamp(2.125rem, 7vw, 4.125rem);
   --text-display--line-height: 1.03;
   /* Serif ko grotesque jitna tight nahi karna — counters band ho jate hain */
   --text-display--letter-spacing: -0.015em;
 
-  /*
-    Index ka sabse bada kaam: project ka naam.
-
-    Ye hero aur section heading ke BEECH mein baithta hai. Pehle work row ka
-    title section heading jitna hi bada tha, isliye list mein aankh ko koi
-    bada stop nahi milta tha — poora page ek hi awaaz mein padha jata tha.
-  */
+  /* Work index ka lead project ka naam. Hero aur section heading ke BEECH */
   --text-headline: clamp(2rem, 3.4vw, 2.75rem);
   --text-headline--line-height: 1.06;
   --text-headline--letter-spacing: -0.015em;
 
-  /* Section ke headings. 1.9rem se 2.125rem — hero 66px ka hai, uske
-     saamne 30px ka heading section ki shuruaat jaisa nahi lagta tha. */
+  /* Section ke headings */
   --text-title: clamp(1.75rem, 3vw, 2.125rem);
   --text-title--line-height: 1.12;
   --text-title--letter-spacing: -0.01em;
 
-  /* Padhne wali body line. 17px se 18px — 62ch ki lambi line pe 17px
-     chhota padta hai, aur About/case study ka poora prose isi pe hai. */
+  /* Padhne wali body line */
   --text-lead: 1.125rem;
   --text-lead--line-height: 1.6;
 
-  /*
-    Sirf hero ki line. 66px headline se seedha 18px pe girna bahut bada
-    jump tha — beech ka ye size dono ko jodta hai.
-  */
+  /* Sirf hero ki line — 66px headline se seedha 18px pe girna bada jump tha */
   --text-hero-lead: clamp(1.03rem, 1.3vw, 1.375rem);
   --text-hero-lead--line-height: 1.55;
 
-  /*
-    Ek bada vaakya jo paragraph nahi hai — abhi sirf About ka lede.
-    18px body se 26px pe jaane ka matlab hai ki reader ko ek jagah rukna hai
-    aur ek baat yaad rakhni hai. Phone pe 20px: usse upar le jaane pe wo
-    headline jaisa lagne lagta hai aur section ka asli heading dab jata hai.
-  */
+  /* Ek bada vaakya jo paragraph nahi hai — abhi sirf About ka lede */
   --text-statement: clamp(1.25rem, 1.9vw, 1.625rem);
   --text-statement--line-height: 1.32;
   --text-statement--letter-spacing: -0.005em;
@@ -155,34 +82,19 @@
   --text-label--line-height: 1;
   --text-label--letter-spacing: 0.08em;
 
-  /*
-    Work index ki chhoti rows ka title.
-
-    Lead row (ZUNO) --text-headline pe hai, yaani 44px. Baaki teen rows
-    --text-title (34px) pe thi, aur 44 vs 34 ka farak itna kam tha ki chaaron
-    rows ek hi awaaz mein padhti thi — "lead row" ka matlab hi khatam ho jata.
-
-    26px pe lead 1.7x bada dikhta hai. Ab list mein ek hi cheez sabse pehle
-    aankh mein aati hai, aur baaki teen uske neeche index ki tarah padhti hain.
-  */
+  /* Work index ki chhoti rows ka title. Lead row 44px pe hai, isliye 26px —
+     isse lead 1.7x bada dikhta hai aur list mein ek hi cheez pehle dikhti hai */
   --text-index-title: 1.625rem;
   --text-index-title--line-height: 1.12;
   --text-index-title--letter-spacing: -0.01em;
 }
 
-/*
-  Nav ke link page ke section pe jump karte hain.
-*/
 html {
-  /* Section bilkul upar chipke nahi — thodi hawa chhodo */
+  /* Nav ke link section pe jump karte hain — wahan thodi hawa chhodo */
   scroll-padding-top: 2rem;
 }
 
-/*
-  Smooth scroll sirf un logon ke liye jinhone motion band nahi kiya.
-  Pehle ye bina guard ke tha — matlab motion sickness wali setting lagane
-  ke baad bhi page smooth-scroll karta tha. Wahi ek asli bug tha.
-*/
+/* Smooth scroll sirf un logon ke liye jinhone motion band nahi kiya */
 @media (prefers-reduced-motion: no-preference) {
   html {
     scroll-behavior: smooth;
@@ -190,22 +102,16 @@ html {
 }
 
 /*
-  Animation — poore site pe sirf chaar move.
+  [data-enter] — load pe chalne wala entry. Ye CSS animation hai, kisi JS ka
+  intezaar nahi karti. Isliye sirf wo cheezein ise use karti hain jo JS se
+  BAAD mein banti hain (form ka jawab) — scroll-trigger unhe kabhi nahi
+  pakad sakta.
 
-  Do alag tareeke hain, aur dono alag wajah se:
+  Scroll wali saari animation GSAP karti hai (SiteMotion.tsx).
 
-  1. [data-enter]  — load pe ya element ke screen pe aate hi chalta hai.
-     Ye CSS animation hai, kisi JS ka intezaar nahi karta. Isliye hero aur
-     wo cheezein jo JS se baad mein banti hain (form ka jawab, ask panel ka
-     answer) isi ko use karti hain.
-
-  2. Scroll wali saari animation ab GSAP karta hai (SiteMotion.tsx), CSS nahi.
-     Wahan content ko GSAP hi chhupata hai — matlab JS na chale to sab
-     normal dikhta hai, kuch bhi opacity 0 pe atak nahi sakta.
-
-  Curve dono ka ek hi: cubic-bezier(0.22, 1, 0.36, 1). Ye shuru mein tez
-  bhagta hai aur aakhir mein dheere settle hota hai — isi se "arrive" wali
-  feel aati hai. CSS ka plain ease-out iske saamne susta lagta hai.
+  RULE: is file mein kabhi `opacity: 0` nahi likhna. Content ko chhupane ka
+  kaam sirf GSAP karta hai, warna JS rukte hi content hamesha ke liye gayab
+  ho jata hai. Ye galti do baar ho chuki hai.
 */
 @keyframes enter {
   from {
@@ -224,8 +130,8 @@ html {
     animation: enter 450ms cubic-bezier(0.22, 1, 0.36, 1) both;
   }
 
-  /* Hero ki teen line ek ke baad ek. 60ms se zyada rakha to line
-     alag-alag aati hui dikhti hain, ek sequence jaisi nahi. */
+  /* Ek ke baad ek. 60ms se zyada rakha to linein alag-alag aati hui dikhti
+     hain, ek sequence jaisi nahi. */
   [data-enter="2"] {
     animation-delay: 60ms;
   }
@@ -236,11 +142,10 @@ html {
 }
 
 /*
-  Lenis (smooth scroll) ke chaar zaroori rules.
-
-  Lenis khud `lenis` class <html> pe lagata hai. Ye rules usi ke liye hain:
-  page ki height natural rahe, aur native smooth-scroll band ho jaye —
-  warna do smooth scroll ek saath ladte hain aur scroll phisalta hai.
+  Lenis (smooth scroll) ke chaar zaroori rules. Lenis khud `lenis` class
+  <html> pe lagata hai. Page ki height natural rahe aur native smooth-scroll
+  band ho jaye — warna do smooth scroll ek saath ladte hain aur scroll
+  phisalta hai.
 */
 html.lenis,
 html.lenis body {
@@ -258,9 +163,3 @@ html.lenis body {
 .lenis.lenis-stopped {
   overflow: hidden;
 }
-
-/*
-  Jisne apne phone/laptop mein animation band kiya hua hai, uske liye
-  upar wala poora block chalta hi nahi — sab kuch seedha dikhta hai.
-  Ye setting log aksar motion sickness ki wajah se lagate hain.
-*/

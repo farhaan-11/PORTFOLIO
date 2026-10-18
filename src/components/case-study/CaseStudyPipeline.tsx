@@ -2,18 +2,17 @@ import { exits, pipeline } from "@/content/zuno";
 import { container, sectionPadding } from "@/lib/layout";
 
 /*
-  Architecture — ek turn ka poora raasta.
+  Ek turn ka poora raasta.
 
-  Ye SVG nahi hai, jaan-boojh ke. SVG diagram phone pe ya chhota ho jata hai
+  Ye SVG nahi hai, jaan-boojh ke: SVG diagram phone pe ya chhota ho jata hai
   ya side mein scroll hone lagta hai, aur uska text select bhi nahi hota.
-  Yahan diagram do hisson mein hai:
+  Yahan diagram do hisson mein hai —
 
-    1. Upar ek line ka path — ek nazar mein poora raasta, mono text mein,
-       arrows ke saath. Phone pe ye apne aap wrap ho jata hai.
-    2. Neeche 7 numbered rows — har step kya karta hai.
+    1. upar ek line ka path, mono text mein, arrows ke saath (phone pe wrap)
+    2. neeche 7 numbered rows, har step kya karta hai
 
   Do model call accent mein hain. Isse ek dekhne mein pata chal jata hai ki
-  paisa kahan kharch hota hai — aur yahi poore design ka sabse kaam ka hissa hai.
+  paisa kahan kharch hota hai.
 */
 export function CaseStudyPipeline() {
   return (
@@ -22,21 +21,20 @@ export function CaseStudyPipeline() {
         One turn, end to end
       </h2>
 
-      {/* Ek nazar ka path. flex-wrap isliye ki phone pe ye apne aap toot jaye */}
+      {/* flex-wrap isliye ki phone pe ye apne aap toot jaye */}
       <div
-        data-reveal
+        data-anim="rise"
         className="border-line bg-paper-2 mt-8 flex flex-wrap items-center gap-x-3 gap-y-2 border p-5"
       >
         {pipeline.map((step, index) => (
           <span key={step.short} className="flex items-center gap-3">
             {/* Pehle step se pehle arrow nahi lagta */}
             {index > 0 && <span className="text-line">→</span>}
+
             <span
-              className={
-                step.modelCall
-                  ? "text-label text-accent font-mono uppercase"
-                  : "text-label text-ink-soft font-mono uppercase"
-              }
+              className={`text-label font-mono uppercase ${
+                step.modelCall ? "text-accent" : "text-ink-soft"
+              }`}
             >
               {step.short}
             </span>
@@ -44,21 +42,22 @@ export function CaseStudyPipeline() {
         ))}
       </div>
 
+      {/* Legend rang ka naam nahi leti. Pehle "Blue" likha tha aur accent
+          cobalt se green ho gaya — line jhooth bolne lagi thi. */}
       <p className="text-label text-ink-soft mt-3 font-mono uppercase">
-        <span className="text-accent">Blue</span> = the two model calls
+        <span className="text-accent">Highlighted</span> = the two model calls
       </p>
 
-      {/* Detail rows. ol isliye ki order khud ek information hai. */}
-      <ol className="border-line mt-12 border-t">
+      {/* ol isliye ki order khud ek information hai */}
+      <ol data-anim-group className="border-line mt-12 border-t">
         {pipeline.map((step, index) => (
           <li
             key={step.short}
-            data-reveal
+            data-anim="row"
             className="border-line border-b py-7 md:grid md:grid-cols-12 md:gap-10"
           >
             <div className="flex gap-4 md:col-span-4">
               <span className="text-label text-accent font-mono tabular-nums">
-                {/* 1 ko "01" banata hai */}
                 {String(index + 1).padStart(2, "0")}
               </span>
 
@@ -78,13 +77,10 @@ export function CaseStudyPipeline() {
         ))}
       </ol>
 
-      {/*
-        Ye block page ka asli daava hai.
-        Upar wala raasta sirf ek kahani hai — baat ye hai ki turn bina jawab
-        ke bhi khatam ho sakta hai, aur teen jagah wo khatam hota hai.
-      */}
+      {/* Page ka asli daava: upar wala raasta sirf ek kahani hai — baat ye hai
+          ki turn bina jawab ke bhi khatam ho sakta hai, aur teen jagah hota hai */}
       <div
-        data-reveal
+        data-anim="rise"
         className="border-line bg-paper-2 mt-12 border p-6 md:p-8"
       >
         <h3 className="font-heading text-xl">

@@ -1,18 +1,15 @@
 // ZUNO case study (/work/zuno) ke saare words yahin rehte hain.
-// profile.ts homepage ka hai, ye file sirf is ek page ka.
 //
-// IMPORTANT: is page ka har number ZUNO repo ki ZUNO_VERIFIED_FACTS.md se
-// verify hua hai. Koi naya number add karne se pehle wahi file padho.
-// Jo cheez measured nahi hai, uske saath likha hai ki woh measured nahi hai —
-// yahi is page ki sabse badi taqat hai, kamzori nahi.
+// RULE: is page ka har number ZUNO repo ki ZUNO_VERIFIED_FACTS.md se verify
+// hua hai. Naya number add karne se pehle wahi file padho. Jo cheez measured
+// nahi hai, uske saath likha hai ki wo measured nahi hai.
 
 export const intro = {
   label: "Case study",
   title: "ZUNO",
   tagline: "A Science tutor for Bihar Board Class 10",
 
-  // Do line. Pehli line kaam batati hai, doosri batati hai ki is page pe
-  // aage kya hai — warna reader scroll karke neeche nikal jata hai.
+  // Pehli line kaam batati hai, doosri batati hai ki is page pe aage kya hai.
   summary: [
     "ZUNO answers Class 10 Science questions from 16 indexed chapters and nothing else. When a question isn't in them, it says so by name instead of writing a paragraph that sounds right.",
     "That one promise is where almost all of the engineering went. Below is the path a single question takes, the four decisions that were hard, and the parts I still haven't fixed.",
@@ -21,8 +18,6 @@ export const intro = {
   link: "https://learnzuno.in",
   linkLabel: "learnzuno.in",
 
-  // Ledger shakal — wahi jo homepage ke hero status rows mein hai.
-  // Recruiter yahan se 10 second mein scope samajh leta hai.
   meta: [
     {
       label: "Role",
@@ -40,8 +35,8 @@ export const intro = {
   ],
 };
 
-// Problem — chaar constraints. Alag-alag koi bhi mushkil nahi hai;
-// chaaron ek saath hone se kaam mushkil banta hai.
+// Alag-alag koi bhi constraint mushkil nahi hai; chaaron ek saath hone se
+// kaam mushkil banta hai.
 export const constraints = [
   {
     label: "The query",
@@ -65,9 +60,8 @@ export const constraints = [
   },
 ];
 
-// Architecture — ek turn ka poora raasta, 7 step.
-// `short` se upar ek nazar ka path banta hai, `text` detail deta hai.
-// Naam aur order repo ke step1..step7 files se liye gaye hain.
+// Ek turn ka poora raasta, 7 step. Naam aur order repo ke step1..step7 files
+// se liye gaye hain. `short` se upar ek nazar ka path banta hai.
 export const pipeline = [
   {
     short: "validate",
@@ -120,9 +114,8 @@ export const pipeline = [
   },
 ];
 
-// Ye block page ka sabse zaroori hissa hai.
-// Upar wala raasta sirf ek kahani hai; asli daava ye hai ki turn bina jawab ke
-// bhi khatam ho sakta hai. Teen jagah hain jahan aisa hota hai.
+// Page ka asli daava: ek turn bina jawab ke bhi khatam ho sakta hai, aur teen
+// jagah wo khatam hota hai.
 export const exits = [
   {
     label: "Out of scope",
@@ -138,11 +131,10 @@ export const exits = [
   },
 ];
 
-// Chaar decisions. Har ek: problem → kya kiya → result.
+// Har ek: problem → kya kiya → result.
 //
-// `result` mein jaan-boojh ke likha hai ki kaunsa number measured hai aur kaunsa
-// nahi. Interview mein "ye kaise measure kiya?" pehla sawaal hota hai — aur yahi
-// ek cheez is page ko baaki portfolios se alag karti hai.
+// `result` mein jaan-boojh ke likha hai ki kaunsa number measured hai aur
+// kaunsa nahi — interview mein "ye kaise measure kiya?" pehla sawaal hota hai.
 export const decisions = [
   {
     title: "Hinglish queries retrieved nothing at all",
@@ -182,11 +174,9 @@ export const decisions = [
   },
 ];
 
-// "Dobara banata to kya badalta" — page ka sabse valuable paragraph.
-//
-// Ye teen baatein Farhan ke apne audit se nikli hain (ZUNO_VERIFIED_FACTS.md),
-// isliye teeno sach hain aur teeno pe interview mein baat ki ja sakti hai.
-// Apne shabdon mein likhna ho to sirf ye array badalna hai — baaki page waisa rahega.
+// Teen baatein jo abhi tak tooti hui hain. Inhe kabhi "lessons learned" jaisi
+// safe list mat banana — jo theek nahi hui usey theek likhne se page jhootha
+// ho jata hai.
 export const nextTime = [
   "I keyed the /ask rate limiter on identity once I understood that one school's NAT was sharing a single quota between every student behind it. The global limiter still has the same raw-IP bug. It's in my backlog, I know it will break the first real classroom, and I should have fixed both the day I found the cause instead of one.",
 
@@ -195,12 +185,8 @@ export const nextTime = [
   "And I'd write the golden retrieval dump first. I spent a week guessing at Hinglish before I had a re-runnable set of 20 queries with their scores saved. After that, checking a retrieval change took minutes.",
 ];
 
-// Screenshots. Teen cheezein, aur teesri sabse zaroori hai —
-// wo poore page ke daave ka saboot hai.
-//
-// src abhi null hai. Image public/images/ mein daalo aur src mein path likho
-// (jaise "/images/zuno-refusal.png"). Jab tak src null hai, page ek khaali frame
-// aur caption dikhata hai — toota hua image icon kabhi nahi dikhega.
+// `src` null ho to page ek khaali frame aur caption dikhata hai — toota hua
+// image icon kabhi nahi dikhta. Image public/images/ mein daal ke path likho.
 export const screenshots = [
   {
     label: "Interface",

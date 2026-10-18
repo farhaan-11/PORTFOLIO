@@ -1,36 +1,37 @@
 "use client";
 
-import { useState } from "react";
+import { type SubmitEvent, useState } from "react";
 import { contactForm } from "@/content/profile";
 import { contactFieldLimits } from "@/lib/contact-fields";
 
 /*
-  Contact form.
+  Teen field se zyada kuch nahi poocha jata. Field ke box nahi hain, sirf
+  neeche ek line — box wala form page pe chipka hua widget lagta hai.
 
-  Teen field se zyada kuch nahi poocha jata: naam, email, message. Har extra
-  field (company, budget, phone) form bharne ka mann kam karta hai, aur ye
-  baatein wo khud pehle message mein likh deta hai.
-
-  Field ke box nahi hain — sirf neeche ek line. Box wala form page pe chipka
-  hua widget lagta hai; underline baaki page ki hairlines jaisa lagta hai.
-
-  Message yahan se `/api/contact` jata hai aur wahan se Farhan ke inbox mein.
   Form ka apna koi "sent" jhooth nahi hai: jab tak server haan nahi kehta,
-  success line dikhti hi nahi.
+  success line dikhti hi nahi. (DECISIONS.md section 9)
 */
 
-// Chaar haal. Inhi se button ka text aur neeche ka message tay hota hai.
 type FormStatus = "idle" | "sending" | "sent" | "error";
+
+const fieldClass =
+  "border-line focus:border-accent mt-2 w-full border-0 border-b bg-transparent py-2 outline-none transition-colors";
+
+const labelClass = "text-label text-ink-soft font-mono uppercase";
+
+// Poora email validation regex se nahi ho sakta (aur jo karte hain wo asli
+// address reject kar dete hain). Yahan sirf shakal dekhi ja rahi hai.
+function looksLikeEmail(value: string) {
+  return value.includes("@") && value.includes(".");
+}
 
 export function ContactForm() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
 
-  // Honeypot. Ye field screen pe dikhti hi nahi, isliye asli insaan ise
-  // kabhi nahi bharta — bot har field bhar deta hai. Bhari hui mili to
-  // server mail nahi bhejta. Captcha se behtar hai: reader ko kuch
-  // karna hi nahi padta.
+  // Honeypot. Ye field screen pe dikhti hi nahi, isliye asli insaan ise kabhi
+  // nahi bharta — bot har field bhar deta hai.
   const [company, setCompany] = useState("");
 
   const [status, setStatus] = useState<FormStatus>("idle");
@@ -41,7 +42,7 @@ export function ContactForm() {
     setErrorText(text);
   }
 
-  async function sendMessage(event: React.FormEvent) {
+  async function sendMessage(event: SubmitEvent<HTMLFormElement>) {
     event.preventDefault();
 
     if (name.trim() === "" || email.trim() === "" || message.trim() === "") {
@@ -49,10 +50,7 @@ export function ContactForm() {
       return;
     }
 
-    // Poora email validation regex se nahi ho sakta (aur jo karte hain wo
-    // asli address reject kar dete hain). Yahan sirf shakal dekhi ja rahi
-    // hai; asli jaanch to reply bhejne pe hi hoti hai.
-    if (!email.includes("@") || !email.includes(".")) {
+    if (!looksLikeEmail(email)) {
       showError(contactForm.errorEmail);
       return;
     }
@@ -85,10 +83,6 @@ export function ContactForm() {
       showError(contactForm.errorServer);
     }
   }
-
-  const fieldClass =
-    "border-line focus:border-accent mt-2 w-full border-0 border-b bg-transparent py-2 outline-none transition-colors";
-  const labelClass = "text-label text-ink-soft font-mono uppercase";
 
   return (
     <form onSubmit={sendMessage} className="mt-8">
@@ -140,9 +134,9 @@ export function ContactForm() {
       </div>
 
       {/*
-        Honeypot. `hidden` nahi, `sr-only` jaisa bhi nahi — screen reader
-        ise padh sakta hai isliye label saaf likha hai aur autocomplete band
-        hai. tabIndex -1 se keyboard wala banda ispe galti se nahi pahunchta.
+        Honeypot. `hidden` nahi, `sr-only` jaisa bhi nahi — screen reader ise
+        padh sakta hai isliye label saaf likha hai aur autocomplete band hai.
+        tabIndex -1 se keyboard wala banda ispe galti se nahi pahunchta.
       */}
       <div className="absolute left-[-9999px]" aria-hidden="true">
         <label htmlFor="contact-company">Company (leave this empty)</label>
@@ -167,8 +161,11 @@ export function ContactForm() {
       </button>
 
       {/*
-        Jawab button ke neeche, usi jagah. Naya page ya popup nahi —
-        reader ne abhi jo dabaya hai, jawab wahin milna chahiye.
+        Jawab button ke neeche, usi jagah — reader ne abhi jo dabaya hai,
+        jawab wahin milna chahiye.
+
+        data-enter (CSS animation) use hota hai, GSAP nahi: ye element JS se
+        baad mein banta hai, aur scroll-trigger usey kabhi nahi pakad sakta.
       */}
       {status === "sent" && (
         <p

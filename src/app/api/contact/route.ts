@@ -19,6 +19,8 @@ function jsonResponse(body: object, status: number) {
   });
 }
 
+// Naam aur email ek hi line mein hone chahiye. Newline hata dena zaroori hai:
+// uske bina koi mail ke header mein apni line jod sakta hai.
 function cleanSingleLine(value: unknown) {
   if (typeof value !== "string") {
     return "";
@@ -30,6 +32,7 @@ function cleanSingleLine(value: unknown) {
     .trim();
 }
 
+// Message mein newline chalti hai (wahi to likha hua text hai), sirf \r hatate hain.
 function cleanMessage(value: unknown) {
   if (typeof value !== "string") {
     return "";
@@ -38,6 +41,8 @@ function cleanMessage(value: unknown) {
   return value.replace(/\r/g, "").trim();
 }
 
+// Browser ka maxLength aur shakal ki jaanch sirf UI hai — curl se koi bhi
+// usse bada ya galat data bhej sakta hai, isliye server pe dobara jaanch.
 function looksLikeEmail(value: string) {
   const parts = value.split("@");
 
@@ -45,10 +50,12 @@ function looksLikeEmail(value: string) {
     return false;
   }
 
-  const before = parts[0];
-  const after = parts[1];
+  const beforeAt = parts[0];
+  const afterAt = parts[1];
 
-  return before.length > 0 && after.includes(".") && !after.startsWith(".");
+  return (
+    beforeAt.length > 0 && afterAt.includes(".") && !afterAt.startsWith(".")
+  );
 }
 
 async function sendMail(name: string, email: string, message: string) {
@@ -56,7 +63,9 @@ async function sendMail(name: string, email: string, message: string) {
   const gmailAppPassword = process.env.GMAIL_APP_PASSWORD;
 
   if (!gmailUser || !gmailAppPassword) {
-    throw new Error("GMAIL_USER ya GMAIL_APP_PASSWORD .env.local mein nahi hai");
+    throw new Error(
+      "GMAIL_USER ya GMAIL_APP_PASSWORD .env.local mein nahi hai",
+    );
   }
 
   const mailer = nodemailer.createTransport({
@@ -69,6 +78,8 @@ async function sendMail(name: string, email: string, message: string) {
   await mailer.sendMail({
     from: `"${name} (portfolio)" <${gmailUser}>`,
     to: toAddress,
+    // replyTo visitor ka asli email hai — inbox se seedha Reply dabane pe
+    // mail usi tak jaata hai.
     replyTo: `"${name}" <${email}>`,
     subject: `Portfolio — ${name}`,
     text: `${message}\n\n---\nFrom: ${name} <${email}>`,
@@ -91,6 +102,8 @@ export async function POST(request: Request) {
   const message = cleanMessage(body.message);
   const company = cleanSingleLine(body.company);
 
+  // Honeypot bhari hui hai, yaani ye bot hai. `ok` bheja jata hai, error nahi —
+  // bot ko pata nahi chalna chahiye ki wo pakda gaya. Mail nahi jaata.
   if (company !== "") {
     return jsonResponse({ ok: true }, 200);
   }
@@ -124,10 +137,14 @@ export async function POST(request: Request) {
   try {
     await sendMail(name, email, message);
   } catch (error) {
+    // Visitor ko ek saaf line milti hai, par terminal mein asli wajah likhni
+    // zaroori hai — warna galat password aur Gmail ka block ek jaise dikhte hain.
     console.error("[contact] mail failed:", error);
     return jsonResponse({ error: "send-failed" }, 502);
   }
 
+  // Ginti mail jaane ke BAAD. Pehle check ke saath hoti thi, to fail hone par
+  // bhi visitor ka quota kat jaata tha. (DECISIONS.md section 9)
   countSentMessage(visitorId);
 
   return jsonResponse({ ok: true }, 200);

@@ -3,15 +3,12 @@ import { screenshots } from "@/content/zuno";
 import { container, sectionPadding } from "@/lib/layout";
 
 /*
-  Teen screenshots. Teesra ("Refusal") sabse zaroori hai — wo poore page
-  ke daave ka saboot hai, isliye teeno ek hi size mein hain, ek ke neeche ek.
+  Teen screenshots, ek hi size mein, ek ke neeche ek. Teesra ("Refusal")
+  sabse zaroori hai — wo poore page ke daave ka saboot hai.
 
   Jab tak content file mein src null hai, yahan ek khaali frame aur caption
-  dikhta hai. Isse do fayde hain: page aaj bhi poora padha ja sakta hai, aur
-  toota hua image icon kabhi nahi dikhta (wo sabse sasta failure hai).
-
-  object-contain isliye ki screenshot ka asli aspect ratio pata nahi hai —
-  cover use karne se phone ka tall screenshot kinare se kat jata.
+  dikhta hai. Do fayde: page aaj bhi poora padha ja sakta hai, aur toota hua
+  image icon kabhi nahi dikhta (wo sabse sasta failure hai).
 */
 export function CaseStudyScreenshots() {
   return (
@@ -20,30 +17,28 @@ export function CaseStudyScreenshots() {
         What it looks like
       </h2>
 
-      <div className="mt-8 space-y-12">
+      <div data-anim-group className="mt-8 space-y-12">
         {screenshots.map((shot) => (
-          <figure key={shot.label} data-reveal>
+          <figure key={shot.label} data-anim="row">
             <p className="text-label text-accent font-mono uppercase">
               {shot.label}
             </p>
 
-            <div className="border-line bg-paper-2 relative mt-4 aspect-[16/10] border">
+            <div className="border-line bg-paper-2 relative mt-4 aspect-16/10 border">
               {shot.src ? (
                 <Image
                   src={shot.src}
                   alt={shot.alt}
                   fill
                   /*
-                    Ye container ki asli width batata hai, taaki Next sahi
-                    size ki image bheje. Pehle yahan 896px likha tha — wo
-                    purane max-w-5xl container ka naap tha. Container 1216px
-                    ka ho chuka hai, isliye desktop pe chhoti image aa rahi
-                    thi aur screenshot dhundhla dikhta tha.
-
-                    Hisaab: 1216 container - 80 padding = 1136 content.
-                    Usse chhoti screen pe padding 80 (md) ya 48 (phone).
+                    Container ki asli width, taaki Next sahi size ki image
+                    bheje. Hisaab: 1216 container - 80 padding = 1136 content.
+                    Pehle 896px likha tha (purane max-w-5xl ka naap) aur isse
+                    desktop pe screenshot dhundhla dikhta tha.
                   */
                   sizes="(min-width: 1216px) 1136px, (min-width: 768px) calc(100vw - 80px), calc(100vw - 48px)"
+                  // contain, cover nahi — asli aspect ratio pata nahi hai, aur
+                  // cover se phone ka tall screenshot kinare se kat jata hai.
                   className="object-contain"
                 />
               ) : (
