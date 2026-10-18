@@ -107,13 +107,96 @@ export const metrics = [
 //
 // `context` field usi wajah se aayi: har row khud batati hai ki ye job thi
 // (company ka naam) ya apna kaam (Independent / Personal project).
-export const work = [
+
+// Section ke heading ke neeche ki ek line.
+//
+// Ye wo baat kehti hai jo rows alag-alag kabhi nahi keh sakti: poori list ki
+// shakal, ek nazar mein. Reader ko turant pata chal jata hai ki neeche chaar
+// ek jaise CRUD app nahi hain.
+//
+// Dhyaan: "Four" ka matlab neeche wali list ki ginti hai. Entry add ya hatao
+// to ye line bhi badalni padegi — warna heading hi jhooth bol degi.
+export const workIntro =
+  "Four products, four different problems: retrieval, payments, logistics, search.";
+
+/*
+  Lead photo ka shape.
+
+  Abhi ye slot khaali (null) hai — asli screenshot aane ka intezaar hai. Khaali
+  rehne par row poori padhti hai, bas photo wala hissa render nahi hota. Isi
+  wajah se ye field null-able hai: aadhi-adhuri image ke saath section ko
+  rokna nahi pada.
+
+  width/height dono zaroori hain. next/image inhi se jagah pehle se reserve
+  karta hai — bina inke photo load hote waqt poora page uchhalta hai.
+*/
+type LeadImage = {
+  src: string;
+  alt: string;
+  // Photo ke neeche ki line. Ye batati hai ki screenshot mein DEKHNA kya hai;
+  // "ZUNO ka screenshot" likhne ka koi matlab nahi, wo aankh ko pehle se dikh raha hai.
+  caption: string;
+  width: number;
+  height: number;
+};
+
+/*
+  Ek work row ka poora shape.
+
+  Ye type isliye likha hai ki `image` aur `stats` kuch rows mein `null` hain.
+  Bina type ke TypeScript unka type hi `null` maan leta, aur image aane ke
+  baad component mein `project.image.src` likhne pe error aata.
+
+  Har entry mein HAR field hoti hai — jo lagu nahi hoti wahan `null`. Ye
+  pehle se is file ka tareeka hai (`link: null`, `caseStudy: null`), aur isi
+  se list ke saare members ek jaise rehte hain.
+*/
+type WorkEntry = {
+  title: string;
+  // ZUNO ki row mein ye italic serif line banti hai.
+  //
+  // Baaki teen rows ki tagline homepage pe NAHI dikhti — wo rows jaan-boojh
+  // ke chhoti hain (ek line kaam ki, bas). Field phir bhi bhari hui hai
+  // kyunki Ask panel ka knowledge base isi se banta hai (ask-knowledge.ts).
+  tagline: string;
+  // Sirf ZUNO ke liye: tagline ke neeche ek mono line.
+  //
+  // Do line, do padhne wale: pehli line insaan ke liye (kya hai, kiske liye),
+  // ye mono line engineer ke liye (kis cheez pe bana hai). Isse keyword
+  // ("retrieval-augmented") bachta hai, par human line bhaari nahi hoti.
+  keywordLine: string | null;
+  context: string;
+  period: string;
+  link: string | null;
+  linkLabel: string | null;
+  caseStudy: string | null;
+  stack: string[];
+  // Sirf ZUNO ke liye: row ke daayen kinare pe numbers ka rail.
+  //
+  // Numbers ko structure banana hai, prose nahi — prose mein number padha
+  // nahi jata, rail mein wo ek nazar mein ginti ban jata hai.
+  stats: { label: string; value: string }[] | null;
+  image: LeadImage | null;
+  // Row mein dikhne wali line. Chhoti, ek nazar mein padhne wali.
+  indexLine: string;
+  // Ask panel ke knowledge base ki line — page pe ye kahin nahi dikhti.
+  //
+  // Do field ek hi cheez ke liye isliye hain ki dono ke padhne wale alag
+  // hain: row ko scan kiya jata hai (chhoti line chahiye), aur Ask panel se
+  // sawaal poocha jata hai (poora detail chahiye). Row ki line chhoti karne
+  // ke liye `description` kaat deta to panel ka jawab chupchap kamzor ho jata.
+  description: string;
+};
+
+export const work: WorkEntry[] = [
   {
     title: "ZUNO",
-    // Tagline mein "Hindi-medium students" nahi likha — wo baat hero mein
-    // aur About mein pehle se hai. About wala version sabse mazboot hai
-    // ("I studied that way too"), isliye wahi rehne diya aur yahan se hataya.
-    tagline: "RAG study tutor, Bihar Board Class 10",
+    // Pehle yahan "RAG study tutor, Bihar Board Class 10" tha — ek line,
+    // keyword andar. Problem: "RAG" engineer ko turant mil jata tha, par HR
+    // ko wo shabd kuch nahi kehta, aur yahi line poore page pe ZUNO ka
+    // pehla parichay hai. Ab kaam do line mein banta hai (neeche keywordLine).
+    tagline: "An AI tutor for Bihar Board Class 10",
+    keywordLine: "Retrieval-augmented · Science syllabus · 16 chapters",
     // Company ki jagah "Independent" — ZUNO kisi employer ke liye nahi bana.
     // Ye side project nahi lagta kyunki usi row mein live link aur 14 mahine
     // ka period hai; side project ke paas ye dono nahi hote.
@@ -135,6 +218,46 @@ export const work = [
       "MongoDB Atlas Vector Search",
       "AWS EC2",
     ],
+    // Do hi stat, teen nahi. Teesra ("Shipping since — Aug 2025") hata diya:
+    // wahi tareekh row ki meta line mein pehle se hai, aur photo ke saath
+    // teen stat row ko bahut lamba kar dete the.
+    stats: [
+      { label: "Chapters indexed", value: "16" },
+      { label: "Intents sorted first", value: "9" },
+    ],
+    /*
+      Lead photo — ZUNO ka chat, row ki poori chaudai mein.
+
+      Frame mein teen cheezein jaan-boojh ke hain: "hiii" ka seedha jawab
+      (greeting vector search ko chhuta hi nahi — wahi baat jo bagal wali
+      line mein likhi hai), ek asli Hinglish sawaal jaisa student type
+      karta hai, aur usi Hinglish mein jawab. Ye wo baat hai jo likhne se
+      nahi, dekhne se samajh aati hai.
+
+      Original screenshot mein browser ka URL bar, extensions aur baayen
+      taraf chat history thi — teeno crop kar diye. Portfolio pe product
+      dikhna chahiye, uska browser nahi.
+
+      Jo frame mein JAAN-BOOJH KE nahi hai: jawab ke neeche wali chapter
+      line. Us shot mein wo galat chapter bata rahi thi — photosynthesis
+      ke jawab ke neeche "Control and Coordination · How Do Organisms
+      Reproduce?" (sahi chapter "Life Processes" hai). Wo ZUNO ka asli bug
+      hai, aur jab tak theek na ho, wo line page pe nahi jayegi. Theek hone
+      ke baad wahi frame lena aur sirf ye chaar value badalni hain —
+      chapter wali line hi "jawab sirf indexed chapters se" wale daave ko
+      sabit karti hai, isliye asli lead photo wahi hai.
+    */
+    image: {
+      src: "/images/zuno-answer.png",
+      alt: "ZUNO's chat: a Class 10 question typed in Hinglish, answered in the same Hinglish",
+      caption: "A student's Hinglish question, answered in the same Hinglish",
+      width: 1410,
+      height: 460,
+    },
+    // 16 aur 9 ab stats rail mein hain, isliye is line se nikal diye gaye —
+    // ek hi row mein ek number do baar padhna usey kamzor karta hai.
+    indexLine:
+      "It answers only from the indexed chapters, and says so when the answer isn't in them instead of inventing one. The classifier decides whether a question needs the syllabus at all, so a greeting never touches vector search.",
     // Yahan sirf wo baatein hain jo page pe kahin aur nahi hain.
     // Classifier wali line ZUNO ko ek system dikhati hai, sirf ek idea nahi.
     description:
@@ -147,6 +270,7 @@ export const work = [
     // farak sawaal ban jata hai.
     title: "Wallet and withdrawals",
     tagline: "Gaming platform, INR and USD",
+    keywordLine: null,
     context: "Rollix (Contract)",
     period: "May 2025 — Aug 2025",
     // Private product hai — na live link, na case study.
@@ -154,9 +278,14 @@ export const work = [
     linkLabel: null,
     caseStudy: null,
     stack: ["React", "Node.js", "Razorpay"],
-    // Har shabd resume se hai. "sole developer on payments" waise ka waisa
-    // rakha hai — resume-decisions-log kehta hai ki kabhi sirf "sole developer"
-    // nahi likhna, kyunki poore platform pe team thi.
+    stats: null,
+    image: null,
+    // "sole developer on payments" waise ka waisa rakha hai —
+    // resume-decisions-log kehta hai ki kabhi sirf "sole developer" nahi
+    // likhna, kyunki poore platform pe team thi.
+    indexLine:
+      "Sole developer on payments: Razorpay checkout, INR/USD deposits, and withdrawals through multi-step admin approval with fee deduction and payout APIs.",
+    // Har shabd resume se hai.
     //
     // "real-time" jaan-boojh ke nahi hai: wo resume se unverified maan ke
     // nikala gaya tha, aur yahan wapas laane ka matlab purana jhagda wapas laana.
@@ -168,23 +297,27 @@ export const work = [
     // Pehle yahan "Gautam Solar" tha. Company ab `context` mein hai, to ye
     // slot bata raha hai ki platform kiske liye tha aur kitna bada tha.
     tagline: "Solar manufacturer, sales to delivery",
+    keywordLine: null,
     context: "Gautam Solar",
     period: "Jul 2024 — May 2025",
-    // Internal company product hai, public link nahi hai. Isliye description ko
-    // thoda zyada kaam karna padta hai — reader khud jaake dekh nahi sakta.
+    // Internal company product hai, public link nahi hai.
     link: null,
     linkLabel: null,
     caseStudy: null,
     stack: ["React", "Node.js", "MySQL", "JWT + RBAC"],
-    // 200+ users aur 25+ modules yahan wapas aaye hain: metric strip hata di
-    // gayi thi, aur uske saath ye numbers poore page se gayab ho gaye the.
-    // Prose mein number strip jitna nahi chamakta, par gayab number se behtar hai.
+    stats: null,
+    image: null,
+    // 200+ aur 25+ dono is chhoti line mein bach gaye hain — ye row ke
+    // sabse bade do number hain, aur inke bina row mein kuch bada nahi bachta.
+    indexLine:
+      "25+ modules from sales to delivery for 200+ people a day, replacing paper dispatch — GPS tracking with route-deviation alerts and three role-based dashboards.",
     description:
       "Replaced a paper-based dispatch process — 25+ modules across sales, dispatch and delivery, used by 200+ people a day. Live GPS tracking with route-deviation alerts, and three role-based dashboards where each role only ever sees its own rows.",
   },
   {
     title: "RentalWave",
     tagline: "Rental & PG marketplace",
+    keywordLine: null,
     // Ye koi job nahi thi, isliye company ki jagah saaf likha hai.
     context: "Personal project",
     // "present" sach hai — is pe dobara kaam shuru ho chuka hai (Oct 2026).
@@ -196,8 +329,12 @@ export const work = [
     linkLabel: "rental-wave.vercel.app",
     caseStudy: null,
     stack: ["React", "Node.js", "MongoDB", "Redis"],
+    stats: null,
+    image: null,
     // 40% ke saath "kaise" bhi likha hai. Akela number ek daava hai;
     // indexing/pagination/Redis ke saath wo kiya hua kaam ban jata hai.
+    indexLine:
+      "Six or more optional filters folded into one MongoDB query; indexing, pagination and Redis caching cut search response time by 40%.",
     description:
       "A marketplace for rentals and PG listings. Its search folds six or more optional filters into a single MongoDB query instead of a chain of conditionals that grows with every new filter, and indexing, pagination and Redis caching cut the search API response time by 40%.",
   },

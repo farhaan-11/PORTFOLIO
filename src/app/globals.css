@@ -22,6 +22,19 @@
   /* Halka text: labels, dates, stack line, meta */
   --color-ink-soft: #6c6c70;
 
+  /*
+    Ink-soft se ek kadam halka. Sirf un lineon ke liye jo content nahi, note hain.
+
+    Abhi iska ek hi kaam hai: work row ka "Private product". Wo line stack
+    line ke theek neeche baithti hai, aur dono ink-soft mein hone se barabar
+    padhti thi — jaise "Private product" bhi stack ka hissa ho. Ek kadam
+    halka karne se wo jawab ban jati hai ("link kyun nahi hai"), daava nahi.
+
+    Isse zyada jagah use na karna. Jo text isse halka hoga wo paper pe
+    padhna band ho jata hai — contrast yahin farsh pe hai.
+  */
+  --color-ink-faint: #a2a2a0;
+
   /* Hairline. Sirf divider aur border — editorial layout isi se banta hai */
   --color-line: #e0e0da;
 
@@ -141,6 +154,20 @@
   --text-label: 0.75rem;
   --text-label--line-height: 1;
   --text-label--letter-spacing: 0.08em;
+
+  /*
+    Work index ki chhoti rows ka title.
+
+    Lead row (ZUNO) --text-headline pe hai, yaani 44px. Baaki teen rows
+    --text-title (34px) pe thi, aur 44 vs 34 ka farak itna kam tha ki chaaron
+    rows ek hi awaaz mein padhti thi — "lead row" ka matlab hi khatam ho jata.
+
+    26px pe lead 1.7x bada dikhta hai. Ab list mein ek hi cheez sabse pehle
+    aankh mein aati hai, aur baaki teen uske neeche index ki tarah padhti hain.
+  */
+  --text-index-title: 1.625rem;
+  --text-index-title--line-height: 1.12;
+  --text-index-title--letter-spacing: -0.01em;
 }
 
 /*
