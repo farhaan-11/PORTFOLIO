@@ -21,14 +21,7 @@ function RollingLabel({ label }: { label: string }) {
   );
 }
 
-/*
-  Header. Resume yahan hai, footer mein nahi — recruiter sabse pehle resume
-  dhoondhta hai. Baaki wajah DECISIONS.md section 8 mein.
 
-  `nested` case study page ke liye hai: wahan wordmark ek "wapas jao" link ban
-  jata hai aur section ke link `/` se shuru hote hain, warna wo
-  /work/zuno#about pe jaate aur kuch nahi hota.
-*/
 export function SiteHeader({ nested = false }: { nested?: boolean }) {
   const linkPrefix = nested ? "/" : "";
 
